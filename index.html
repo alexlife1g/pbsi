@@ -171,6 +171,16 @@
 
             <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 items-center">
                 <div class="lg:col-span-1 space-y-6">
+                    
+                    <!-- НОВИЙ БЛОК: Досвід -->
+                    <div class="flex p-4 bg-yellow-100 rounded-lg shadow-md border-l-4 border-yellow-500">
+                        <div class="flex-shrink-0 text-3xl mr-4 text-yellow-600">🏆</div>
+                        <div>
+                            <h4 class="text-lg font-semibold" data-i18n="adv4_title">Понад 20 Років Досвіду</h4>
+                            <p class="text-gray-800" data-i18n="adv4_text">Наш багаторічний досвід гарантує бездоганну якість виробництва та надійність кожного замовлення.</p>
+                        </div>
+                    </div>
+                    
                     <!-- Advantage 1: Fast Loading -->
                     <div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
                         <div class="flex-shrink-0 text-3xl mr-4 text-green-600">⏱️</div>
@@ -201,21 +211,21 @@
 
                 <!-- Image Gallery Placeholder -->
                 <div class="lg:col-span-1 grid grid-cols-2 gap-4 rounded-xl overflow-hidden shadow-2xl">
-                    <!-- Using descriptive image tags for the user's uploaded pictures -->
+                    <!-- Замінено заглушки на відносні шляхи до ваших файлів: -->
                     <div class="col-span-2">
                         <!-- Image of Pallets loaded in truck 1 -->
-                        <img src="https://placehold.co/800x400/3c3b3b/ffffff?text=Loading+Pallets+1" alt="Піддони завантажені у вантажівку 1" class="w-full h-auto object-cover rounded-tl-xl">
-                        <!-- User's Image:  -->
+                        <img src="loading_pallets.jpg" alt="Піддони завантажені у вантажівку 1" class="w-full h-auto object-cover rounded-tl-xl">
+                        <!-- ПРИМІТКА: Переконайтеся, що файл 'loading_pallets.jpg' знаходиться в тій же папці, що й index.html -->
                     </div>
                     <div>
                         <!-- Image of Pallet quality control -->
-                        <img src="https://placehold.co/400x300/3c3b3b/ffffff?text=Quality+Control+1" alt="Контроль якості піддону з рулеткою" class="w-full h-auto object-cover">
-                        <!-- User's Image:  -->
+                        <img src="quality_control.jpg" alt="Контроль якості піддону з рулеткою" class="w-full h-auto object-cover">
+                        <!-- ПРИМІТКА: Переконайтеся, що файл 'quality_control.jpg' знаходиться в тій же папці, що й index.html -->
                     </div>
                     <div>
                         <!-- Image of Raw materials quality control -->
-                        <img src="https://placehold.co/400x300/3c3b3b/ffffff?text=Raw+Material+Check" alt="Перевірка якості сировини" class="w-full h-auto object-cover">
-                        <!-- User's Image:  -->
+                        <img src="raw_material_check.jpg" alt="Перевірка якості сировини" class="w-full h-auto object-cover">
+                        <!-- ПРИМІТКА: Переконайтеся, що файл 'raw_material_check.jpg' знаходиться в тій же папці, що й index.html -->
                     </div>
                 </div>
             </div>
@@ -285,6 +295,8 @@
                 'serv3_title': 'Відповідність ISPM 15',
                 'serv3_text': 'Вся дерев\'яна продукція проходить термообробку (HT) та сертифікована з маркуванням ISPM 15 для безперешкодного міжнародного експорту.',
                 'sect_title_logist': 'Ваша B2B Перевага: Бездоганна Логістика',
+                'adv4_title': 'Понад 20 Років Досвіду', // НОВИЙ ПЕРЕКЛАД
+                'adv4_text': 'Наш багаторічний досвід гарантує бездоганну якість виробництва та надійність кожного замовлення.', // НОВИЙ ПЕРЕКЛАД
                 'adv1_title': 'Швидке Завантаження',
                 'adv1_text': 'Ми забезпечуємо швидке та професійне завантаження та кріплення піддонів лише за 1 день.',
                 'adv2_title': 'Самостійне Митне Оформлення',
@@ -316,6 +328,8 @@
                 'serv3_title': 'ISPM 15 Compliant',
                 'serv3_text': 'All wooden products are heat-treated (HT) and certified with ISPM 15 markings for smooth international export.',
                 'sect_title_logist': 'Your B2B Advantage: Seamless Logistics',
+                'adv4_title': 'Over 20 Years of Experience', // НОВИЙ ПЕРЕКЛАД
+                'adv4_text': 'Our long-standing experience guarantees impeccable production quality and reliability for every order.', // НОВИЙ ПЕРЕКЛАД
                 'adv1_title': 'Rapid Loading',
                 'adv1_text': 'We ensure fast and professional pallet loading and securing in just 1 day.',
                 'adv2_title': 'Self-Sufficient Customs Clearance',
@@ -347,6 +361,8 @@
                 'serv3_title': 'ISPM 15 Konform',
                 'serv3_text': 'Alle Holzprodukte sind wärmebehandelt (HT) und mit der ISPM 15 Markierung für einen reibungslosen internationalen Export zertifiziert.',
                 'sect_title_logist': 'Ihr B2B-Vorteil: Nahtlose Logistik',
+                'adv4_title': 'Über 20 Jahre Erfahrung', // НОВИЙ ПЕРЕКЛАД
+                'adv4_text': 'Unsere langjährige Erfahrung garantiert eine einwandfreie Produktionsqualität und Zuverlässigkeit bei jeder Bestellung.', // НОВИЙ ПЕРЕКЛАД
                 'adv1_title': 'Schnelles Verladen',
                 'adv1_text': 'Wir gewährleisten ein schnelles und professionelles Verladen und Sichern der Paletten in nur 1 Tag.',
                 'adv2_title': 'Eigenständige Zollabfertigung',
@@ -377,17 +393,19 @@
                 'serv2_text': 'Czas realizacji to tylko 15 dni od ostatecznego zatwierdzenia rysunków technicznych. Priorytetem jest szybkość bez uszczerbku dla jakości.',
                 'serv3_title': 'Zgodność z ISPM 15',
                 'serv3_text': 'Wszystkie produkty drewniane są poddawane obróbce cieplnej (HT) i posiadają certyfikat z oznaczeniem ISPM 15 dla sprawnego eksportu międzynarodowego.',
-                'sect_title_logist': 'Twoja Przewaga B2B: Bezproblemowa Logistyka',
+                'sect_title_logist': 'Twoja Przewaga B2B: Безproblemowa Logistyka',
+                'adv4_title': 'Ponad 20 Lat Doświadczenia', // НОВИЙ ПЕРЕКЛАД
+                'adv4_text': 'Nasze wieloletnie doświadczenie gwarantuje nienaganną jakość produkcji i niezawodność każdego zamówienia.', // НОВИЙ ПЕРЕКЛАД
                 'adv1_title': 'Szybki Załadunek',
                 'adv1_text': 'Zapewniamy szybki i profesjonalny załadunek oraz zabezpieczenie palet w zaledwie 1 dzień.',
                 'adv2_title': 'Samodzielna Odprawa Celna',
-                'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łańцюх dostaw.',
+                'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łańcuch dostaw.',
                 'adv3_title': 'Wysoka Zdolność Miesięczna',
                 'adv3_text': 'Gotowi zabezpieczyć długoterminowe zamówлення o niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoje Zamówлення',
                 'contact_text': 'Gotowi zabezpieczyć dostawу palet na zamówлення? Skontaktuj się bezpośredньо з нашим Керівником Sprzedaży.',
                 'contact_person_role_pre': 'Kierownik Sprzedaży:',
-                'footer_text': 'Sp. z o.o. "Promubdsportindustriya", Ukraina. Obsługujemy europejskich klientів B2B.',
+                'footer_text': 'Sp. z o.o. "Promubdsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
                 'copyright': 'Wszelkie Prawa Zastrzeżone.',
                 'select_language': 'Wybierz język:'
             }
