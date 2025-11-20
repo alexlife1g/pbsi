@@ -40,6 +40,19 @@
             padding: 8px 12px;
             font-size: 1rem;
         }
+        /* Custom class for consistent image scaling on small screens */
+        .img-gallery-item {
+            height: 250px; /* Фіксована висота для мобільного */
+        }
+        /* Збільшуємо висоту та використовуємо object-cover на великих екранах */
+        @media (min-width: 1024px) {
+            .img-gallery-item-lg-main {
+                height: 400px;
+            }
+            .img-gallery-item-lg {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -209,25 +222,32 @@
                     </div>
                 </div>
 
-                <!-- Image Gallery Placeholder -->
-                <div class="lg:col-span-1 grid grid-cols-2 gap-4 rounded-xl overflow-hidden shadow-2xl">
-                    <!-- Замінено заглушки на відносні шляхи до ваших файлів: -->
-                    <div class="col-span-2">
-                        <!-- Image of Pallets loaded in truck 1 -->
-                        <img src="loading_pallets.jpg" alt="Піддони завантажені у вантажівку 1" class="w-full h-auto object-cover rounded-tl-xl">
-                        <!-- ПРИМІТКА: Переконайтеся, що файл 'loading_pallets.jpg' знаходиться в тій же папці, що й index.html -->
+                <!-- Image Gallery -->
+                <div class="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4 rounded-xl overflow-hidden shadow-2xl">
+                    
+                    <!-- Головне зображення (буде займати більшу висоту на десктопі) -->
+                    <div class="col-span-2 lg:col-span-1 img-gallery-item-lg-main">
+                        <img src="loading_pallets.jpg" 
+                             alt="Піддони завантажені у вантажівку 1" 
+                             class="w-full h-full object-cover rounded-tl-xl lg:rounded-xl">
                     </div>
-                    <div>
-                        <!-- Image of Pallet quality control -->
-                        <img src="quality_control.jpg" alt="Контроль якості піддону з рулеткою" class="w-full h-auto object-cover">
-                        <!-- ПРИМІТКА: Переконайтеся, що файл 'quality_control.jpg' знаходиться в тій же папці, що й index.html -->
-                    </div>
-                    <div>
-                        <!-- Image of Raw materials quality control -->
-                        <img src="raw_material_check.jpg" alt="Перевірка якості сировини" class="w-full h-auto object-cover">
-                        <!-- ПРИМІТКА: Переконайтеся, що файл 'raw_material_check.jpg' знаходиться в тій же папці, що й index.html -->
+                    
+                    <!-- Сітка з меншими зображеннями (розміщуються внизу або поруч) -->
+                    <div class="col-span-2 grid grid-cols-2 gap-4">
+                        <div class="img-gallery-item-lg">
+                            <img src="quality_control.jpg" 
+                                 alt="Контроль якості піддону з рулеткою" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-gallery-item-lg">
+                            <img src="raw_material_check.jpg" 
+                                 alt="Перевірка якості сировини" 
+                                 class="w-full h-full object-cover">
+                        </div>
                     </div>
                 </div>
+                <!-- Кінець Image Gallery -->
+                
             </div>
         </div>
     </section>
@@ -399,14 +419,14 @@
                 'adv1_title': 'Szybki Załadunek',
                 'adv1_text': 'Zapewniamy szybki i profesjonalny załadunek oraz zabezpieczenie palet w zaledwie 1 dzień.',
                 'adv2_title': 'Samodzielna Odprawa Celna',
-                'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łańcuch dostaw.',
+                'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łańцуг dostaw.',
                 'adv3_title': 'Wysoka Zdolność Miesięczna',
                 'adv3_text': 'Gotowi zabezpieczyć długoterminowe zamówлення o niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoje Zamówлення',
                 'contact_text': 'Gotowi zabezpieczyć dostawу palet na zamówлення? Skontaktuj się bezpośredньо з нашим Керівником Sprzedaży.',
                 'contact_person_role_pre': 'Kierownik Sprzedaży:',
                 'footer_text': 'Sp. z o.o. "Promubdsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
-                'copyright': 'Wszelkie Prawa Zastrzeżone.',
+                'copyright': 'Wszelkie Prawa Zastrzeжені.',
                 'select_language': 'Wybierz język:'
             }
         };
