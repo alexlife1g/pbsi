@@ -28,33 +28,82 @@
         .lang-button:not(.active):hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
+        /* Mobile Menu styles */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .lang-button-mobile {
+            padding: 8px 12px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <!-- Header & Navigation -->
-    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-10">
+    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tight" data-i18n="header_title">ТОВ ПРОМУБДСПОРТІНДУСТРІЯ</h1>
+            <!-- Company Title (Logo) -->
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight truncate max-w-[60%]" data-i18n="header_title">ТОВ ПРОМУБДСПОРТІНДУСТРІЯ</h1>
             
-            <div class="flex items-center space-x-6">
-                <!-- Language Switcher -->
-                <div id="language-switcher" class="flex space-x-1.5 border border-white/30 rounded-lg p-0.5">
+            <div class="flex items-center space-x-4">
+                <!-- Desktop Language Switcher (Visible on MD and larger) -->
+                <div id="language-switcher-desktop" class="hidden md:flex space-x-1.5 border border-white/30 rounded-lg p-0.5">
                     <button class="lang-button active" data-lang="uk">UA</button>
                     <button class="lang-button" data-lang="en">EN</button>
                     <button class="lang-button" data-lang="de">DE</button>
                     <button class="lang-button" data-lang="pl">PL</button>
                 </div>
 
-                <!-- Navigation -->
+                <!-- Desktop Navigation (Visible on MD and larger) -->
                 <nav class="hidden md:flex space-x-6 text-sm font-medium">
                     <a href="#services" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
                     <a href="#advantages" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
                     <a href="#contact" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
                 </nav>
+
+                <!-- Mobile Menu Button (Hamburger Icon - Visible on small screens) -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-white/20 transition duration-300 z-30">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full bg-blue-900 text-white p-6 z-40 flex flex-col justify-start items-start">
+        <!-- Close Button -->
+        <div class="w-full flex justify-end mb-10">
+            <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-white/20 transition duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex flex-col space-y-6 text-2xl font-semibold mb-10">
+            <a href="#services" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
+            <a href="#advantages" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
+            <a href="#contact" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
+        </nav>
+
+        <!-- Mobile Language Switcher -->
+        <div class="text-lg font-medium mb-4" data-i18n="select_language">Оберіть мову:</div>
+        <div id="language-switcher-mobile" class="flex space-x-3 border border-white/30 rounded-lg p-1.5 self-center">
+            <button class="lang-button lang-button-mobile active" data-lang="uk">UA</button>
+            <button class="lang-button lang-button-mobile" data-lang="en">EN</button>
+            <button class="lang-button lang-button-mobile" data-lang="de">DE</button>
+            <button class="lang-button lang-button-mobile" data-lang="pl">PL</button>
+        </div>
+    </div>
+
 
     <!-- Hero Section -->
     <section class="bg-gray-100 py-16 md:py-24 border-b border-gray-300">
@@ -79,7 +128,8 @@
                 Наша Спеціалізація у Піддонах
             </h3>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Changed to ensure good responsiveness on small screens -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"> 
                 <!-- Service 1: Custom Dimensions -->
                 <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
                     <div class="text-4xl text-blue-600 mb-4">📐</div>
@@ -117,7 +167,7 @@
                 Ваша B2B Перевага: Бездоганна Логістика
             </h3>
 
-            <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 items-center">
                 <div class="lg:col-span-1 space-y-6">
                     <!-- Advantage 1: Fast Loading -->
                     <div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
@@ -181,20 +231,20 @@
             <div class="space-y-4 mb-8">
                 <!-- Contact Person -->
                 <div class="flex items-center justify-center p-3 bg-white rounded-lg border">
-                    <div class="text-2xl text-blue-600 mr-4">👤</div>
+                    <div class="flex-shrink-0 text-2xl text-blue-600 mr-4">👤</div>
                     <p class="text-lg font-medium" data-i18n="contact_person_role_pre">Керівник відділу продажів:</p>
                     <p class="text-lg font-medium ml-1">Шапіро Геннадій Айзікович</p>
                 </div>
 
                 <!-- Email -->
                 <div class="flex items-center justify-center p-3 bg-white rounded-lg border">
-                    <div class="text-2xl text-blue-600 mr-4">📧</div>
-                    <a href="mailto:tovpbsi@gmail.com" class="text-lg text-blue-600 hover:underline">tovpbsi@gmail.com</a>
+                    <div class="flex-shrink-0 text-2xl text-blue-600 mr-4">📧</div>
+                    <a href="mailto:tovpbsi@gmail.com" class="text-lg text-blue-600 hover:underline break-all">tovpbsi@gmail.com</a>
                 </div>
 
                 <!-- Phone -->
                 <div class="flex items-center justify-center p-3 bg-white rounded-lg border">
-                    <div class="text-2xl text-blue-600 mr-4">📞</div>
+                    <div class="flex-shrink-0 text-2xl text-blue-600 mr-4">📞</div>
                     <a href="tel:+380964462281" class="text-lg text-blue-600 hover:underline">+38 096 446 2281</a>
                 </div>
             </div>
@@ -212,7 +262,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Switching -->
+    <!-- JavaScript for Language Switching and Mobile Menu -->
     <script>
         const translations = {
             'uk': {
@@ -238,12 +288,13 @@
                 'adv2_title': 'Самостійне Митне Оформлення',
                 'adv2_text': 'Ми самостійно керуємо всією експортною митною документацією та процедурами, спрощуючи Ваш ланцюг постачання.',
                 'adv3_title': 'Висока Місячна Потужність',
-                'adv3_text': 'Готові забезпечувати довгострокові замовлення з надійним обсягом постачання.',
+                'adv3_text': 'Готові забезпечувати довгострокові замовлення з надійною обсягом постачання.',
                 'sect_title_contact': 'Розпочніть Ваше Замовлення',
                 'contact_text': 'Бажаєте забезпечити постачання піддонів на замовлення? Зв\'яжіться безпосередньо з нашим Керівником відділу продажів.',
                 'contact_person_role_pre': 'Керівник відділу продажів:',
                 'footer_text': 'ТОВ "Промубдспортіндустрія", Україна. Обслуговуємо європейських B2B клієнтів.',
-                'copyright': 'Всі Права Захищені.'
+                'copyright': 'Всі Права Захищені.',
+                'select_language': 'Оберіть мову:'
             },
             'en': {
                 'title': 'Promubdsportindustriya | Custom Pallet Manufacturer',
@@ -273,7 +324,8 @@
                 'contact_text': 'Ready to secure your custom pallet supply? Contact our Head of Sales directly.',
                 'contact_person_role_pre': 'Head of Sales:',
                 'footer_text': 'TOV "Promubdsportindustriya", Ukraine. Serving European B2B clients.',
-                'copyright': 'All Rights Reserved.'
+                'copyright': 'All Rights Reserved.',
+                'select_language': 'Select language:'
             },
             'de': {
                 'title': 'Promubdsportindustriya | Hersteller von Paletten nach Maß',
@@ -303,7 +355,8 @@
                 'contact_text': 'Bereit, Ihre maßgeschneiderte Palettenlieferung zu sichern? Kontaktieren Sie unseren Vertriebsleiter direkt.',
                 'contact_person_role_pre': 'Vertriebsleiter:',
                 'footer_text': 'GMBH "Promubdsportindustriya", Ukraine. Wir bedienen europäische B2B-Kunden.',
-                'copyright': 'Alle Rechte vorbehalten.'
+                'copyright': 'Alle Rechte vorbehalten.',
+                'select_language': 'Sprache auswählen:'
             },
             'pl': {
                 'title': 'Promubdsportindustriya | Producent Palet na Zamówienie',
@@ -330,14 +383,30 @@
                 'adv3_title': 'Wysoka Zdolność Miesięczna',
                 'adv3_text': 'Gotowi zabezpieczyć długoterminowe zamówienia o niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoje Zamówienie',
-                'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówienie? Skontaktuj się bezpośrednio z naszym Kierownikiem Sprzedaży.',
+                'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówлення? Skontaktuj się bezpośrednio з нашим Керівником Sprzedaży.',
                 'contact_person_role_pre': 'Kierownik Sprzedaży:',
                 'footer_text': 'Sp. z o.o. "Promubdsportindustriya", Ukraina. Obsługujemy europejskich klientów B2B.',
-                'copyright': 'Wszelkie Prawa Zastrzeżone.'
+                'copyright': 'Wszelkie Prawa Zastrzeżone.',
+                'select_language': 'Wybierz język:'
             }
         };
 
         let currentLang = 'uk';
+        const desktopLangSwitcher = document.getElementById('language-switcher-desktop');
+        const mobileLangSwitcher = document.getElementById('language-switcher-mobile');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        
+        // Helper function to update active state for all language buttons
+        function updateLangButtonState(lang) {
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('active');
+                }
+            });
+        }
 
         function switchLanguage(lang) {
             if (!translations[lang]) return;
@@ -349,23 +418,40 @@
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    element.innerHTML = translations[lang][key];
+                    // Use innerHTML for the hero heading which contains a <br>
+                    element.innerHTML = translations[lang][key]; 
                 }
             });
 
             // Special handling for title tag
             document.title = translations[lang]['title'];
 
-            // Update active button state
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            document.querySelector(`.lang-button[data-lang="${lang}"]`).classList.add('active');
+            // Update active button state globally
+            updateLangButtonState(lang);
         }
 
+        // --- Mobile Menu Logic ---
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+            // Toggle body scroll lock
+            document.body.classList.toggle('overflow-hidden'); 
+        }
+
+        // Close mobile menu and scroll to section on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
+        
         // Initialize listeners and set initial state
         document.addEventListener('DOMContentLoaded', () => {
-            // Set up event listeners for language buttons
+            // Set up event listeners for mobile menu
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            mobileMenuClose.addEventListener('click', toggleMobileMenu);
+
+            // Set up event listeners for language buttons (desktop and mobile)
             document.querySelectorAll('.lang-button').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const lang = event.target.getAttribute('data-lang');
