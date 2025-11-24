@@ -4,34 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="title">Промубдспортіндустрія | Виробник піддонів на замовлення</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use Inter font -->
-    <style>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font --><style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8f8f8;
+            overflow-x: hidden;
         }
+
+        /* Стилі для кнопок перемикання мови */
         .lang-button {
             padding: 4px 8px;
             font-size: 0.8rem;
             cursor: pointer;
             border-radius: 6px;
             transition: all 0.2s;
+            color: white; /* Забезпечуємо, що текст завжди білий на прозорій шапці */
         }
         .lang-button.active {
-            background-color: #eab308; /* Yellow-500 */
-            color: #1f2937; /* Gray-800 */
+            background-color: #059669; /* Green-600 */
+            color: #ffffff; 
             font-weight: 600;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* Легка тінь для активності */
         }
         .lang-button:not(.active):hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.2); /* Більш помітний hover */
         }
+        
         /* Mobile Menu styles */
         .mobile-menu {
             transition: transform 0.3s ease-in-out;
-            transform: translateX(100%);
         }
         .mobile-menu.open {
             transform: translateX(0);
@@ -40,11 +43,62 @@
             padding: 8px 12px;
             font-size: 1rem;
         }
-        /* Custom class for consistent image scaling on small screens */
-        .img-gallery-item {
-            height: 250px; /* Фіксована висота для мобільного */
+
+        /* Custom class for Hero background image */
+        .hero-bg {
+            /* Шлях до попередньо згенерованого зображення */
+            background-image: url('hero_background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 0;
         }
-        /* Збільшуємо висоту та використовуємо object-cover на великих екранах */
+        /* Overlay for better contrast and dark tone */
+        .hero-bg:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: 1;
+        }
+
+        /* Стилі для діагональних ліній */
+        .diagonal-line {
+            position: absolute;
+            width: 256px; 
+            height: 256px; 
+            border-color: #10B981; 
+            opacity: 0.7;
+            pointer-events: none;
+            display: none;
+        }
+        @media (min-width: 768px) {
+             .diagonal-line {
+                 display: block;
+             }
+        }
+        .diagonal-line-top-right {
+            top: 0;
+            right: 0;
+            border-top-width: 4px;
+            border-right-width: 4px;
+            transform: rotate(45deg) translate(25%, -25%); 
+        }
+        .diagonal-line-bottom-left {
+            bottom: 0;
+            left: 0;
+            border-bottom-width: 4px;
+            border-left-width: 4px;
+            transform: rotate(45deg) translate(-25%, 25%); 
+        }
+
+        /* Стилі для галереї зображень */
+        .img-gallery-item {
+            height: 250px; 
+        }
         @media (min-width: 1024px) {
             .img-gallery-item-lg-main {
                 height: 400px;
@@ -57,30 +111,25 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- Header & Navigation -->
-    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-20">
+    <!-- Header & Navigation (Прозорий фон, білий текст, абсолютне позиціонування) --><header class="bg-transparent text-white shadow-none absolute w-full top-0 z-30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Company Title (Logo) -->
-            <h1 class="text-xl sm:text-2xl font-bold tracking-tight truncate max-w-[60%]" data-i18n="header_title">ТОВ ПРОМУБДСПОРТІНДУСТРІЯ</h1>
+            <!-- Company Title (Logo) --><h1 class="text-xl sm:text-2xl font-bold tracking-tight truncate max-w-[60%]" data-i18n="header_title">ТОВ ПРОМУБДСПОРТІНДУСТРІЯ</h1>
             
             <div class="flex items-center space-x-4">
-                <!-- Desktop Language Switcher (Visible on MD and larger) -->
-                <div id="language-switcher-desktop" class="hidden md:flex space-x-1.5 border border-white/30 rounded-lg p-0.5">
+                <!-- Desktop Language Switcher --><div id="language-switcher-desktop" class="hidden md:flex space-x-1.5 border border-white/30 rounded-lg p-0.5 bg-white/10 backdrop-blur-sm">
                     <button class="lang-button active" data-lang="uk">UA</button>
                     <button class="lang-button" data-lang="en">EN</button>
                     <button class="lang-button" data-lang="de">DE</button>
                     <button class="lang-button" data-lang="pl">PL</button>
                 </div>
 
-                <!-- Desktop Navigation (Visible on MD and larger) -->
-                <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                    <a href="#services" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
-                    <a href="#advantages" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
-                    <a href="#contact" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
+                <!-- Desktop Navigation --><nav class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#services" class="hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
+                    <a href="#advantages" class="hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
+                    <a href="#contact" class="hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
                 </nav>
 
-                <!-- Mobile Menu Button (Hamburger Icon - Visible on small screens) -->
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-white/20 transition duration-300 z-30">
+                <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-white/20 transition duration-300 z-40">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
@@ -89,10 +138,8 @@
         </div>
     </header>
 
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full bg-blue-900 text-white p-6 z-40 flex flex-col justify-start items-start">
-        <!-- Close Button -->
-        <div class="w-full flex justify-end mb-10">
+    <!-- Mobile Menu (Side overlay) --><div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full bg-gray-900 text-white p-6 z-50 flex flex-col justify-start items-start translate-x-full">
+        <!-- Close Button --><div class="w-full flex justify-end mb-10">
             <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-white/20 transition duration-300">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -100,15 +147,13 @@
             </button>
         </div>
 
-        <!-- Navigation Links -->
-        <nav class="flex flex-col space-y-6 text-2xl font-semibold mb-10">
-            <a href="#services" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
-            <a href="#advantages" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
-            <a href="#contact" class="hover:text-yellow-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
+        <!-- Navigation Links --><nav class="flex flex-col space-y-6 text-2xl font-semibold mb-10">
+            <a href="#services" class="hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
+            <a href="#advantages" class="hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
+            <a href="#contact" class="hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
         </nav>
 
-        <!-- Mobile Language Switcher -->
-        <div class="text-lg font-medium mb-4" data-i18n="select_language">Оберіть мову:</div>
+        <!-- Mobile Language Switcher --><div class="text-lg font-medium mb-4" data-i18n="select_language">Оберіть мову:</div>
         <div id="language-switcher-mobile" class="flex space-x-3 border border-white/30 rounded-lg p-1.5 self-center">
             <button class="lang-button lang-button-mobile active" data-lang="uk">UA</button>
             <button class="lang-button lang-button-mobile" data-lang="en">EN</button>
@@ -118,54 +163,62 @@
     </div>
 
 
-    <!-- Hero Section -->
-    <section class="bg-gray-100 py-16 md:py-24 border-b border-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-lg font-semibold text-blue-600 mb-2 uppercase tracking-wider" data-i18n="hero_tagline">B2B Виробництво та Експорт Піддонів</p>
-            <!-- ЗМЕНШЕНО РОЗМІР ШРИФТУ: text-3xl (мобільний) -> md:text-5xl (середній) -> lg:text-6xl (великий) -->
-            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight" data-i18n="hero_heading">
-                Дерев'яні Піддони на Замовлення <br class="hidden sm:inline"> Для Європейського Ринку
-            </h2>
-            <!-- ЗМЕНШЕНО РОЗМІР ШРИФТУ: text-base (мобільний) -> sm:text-xl (середній/великий) -->
-            <p class="text-base sm:text-xl text-gray-600 mb-10 max-w-3xl mx-auto" data-i18n="hero_text">
-                Надійний український виробник, що спеціалізується на нестандартних, виготовлених на замовлення палетних рішеннях за Вашими кресленнями.
-            </p>
-            <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 shadow-lg transform hover:scale-105 transition duration-300" data-i18n="hero_button">
-                Надішліть Ваші Креслення Зараз
-            </a>
+    <!-- Hero Section (З фоновим зображенням та прозорим контейнером тексту) --><section id="hero-section" class="hero-bg min-h-screen flex items-center justify-center py-24 md:py-32 relative z-10">
+        
+        <!-- Контейнер для центрування тексту та сертифікатів --><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
+            <!-- Прозорий контейнер для тексту з розмиттям фону --><div class="bg-white/80 p-6 md:p-12 rounded-lg shadow-2xl max-w-4xl mx-auto" style="backdrop-filter: blur(4px);"> 
+                <p class="text-lg font-semibold text-gray-800 mb-2 uppercase tracking-wider" data-i18n="hero_tagline">B2B Виробництво та Експорт Піддонів</p>
+                
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight" data-i18n="hero_heading">
+                    Дерев'яні Піддони на Замовлення <br class="hidden sm:inline"> Для Європейського Ринку
+                </h2>
+                
+                <p class="text-base sm:text-xl text-gray-700 mb-10 max-w-3xl mx-auto" data-i18n="hero_text">
+                    Надійний український виробник, що спеціалізується на нестандартних, виготовлених на замовлення палетних рішеннях за Вашими кресленнями.
+                </p>
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 shadow-lg transform hover:scale-105 transition duration-300" data-i18n="hero_button">
+                    Надішліть Ваші Креслення Зараз
+                </a>
+            </div>
+            
+            <!-- Сертифікати (замість генерації складних логотипів, використовуємо візуально простий текст-плейсхолдер) --><div class="flex justify-center items-center space-x-6 mt-8">
+                <div class="h-8 shadow-md text-sm font-bold bg-green-600 text-white rounded-lg p-2 flex items-center">FSC Certified</div>
+                <div class="h-8 shadow-md text-sm font-bold bg-green-600 text-white rounded-lg p-2 flex items-center">EPAL Quality</div>
+                <div class="h-8 shadow-md text-sm font-bold bg-green-600 text-white rounded-lg p-2 flex items-center">ISO 9001</div>
+            </div>
+        </div>
+        
+        <!-- Діагональні зелені лінії, як на фото --><div class="absolute inset-0 pointer-events-none">
+            <!-- Верхня права лінія (приховано на мобільних, відображається на md+) --><div class="diagonal-line diagonal-line-top-right"></div>
+            <!-- Нижня ліва лінія (приховано на мобільних, відображається на md+) --><div class="diagonal-line diagonal-line-bottom-left"></div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-16 md:py-20">
+    <!-- Services Section --><section id="services" class="py-16 md:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold text-gray-900 mb-12 text-center border-b-2 border-yellow-500 inline-block pb-1" data-i18n="sect_title_spec">
+            <h3 class="text-3xl font-bold text-gray-900 mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_spec">
                 Наша Спеціалізація у Піддонах
             </h3>
 
-            <!-- Changed to ensure good responsiveness on small screens -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"> 
-                <!-- Service 1: Custom Dimensions -->
-                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
-                    <div class="text-4xl text-blue-600 mb-4">📐</div>
+                <!-- Service 1: Custom Dimensions --><div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="text-4xl text-green-600 mb-4">📐</div>
                     <h4 class="text-xl font-semibold mb-3" data-i18n="serv1_title">Будь-який Розмір, Будь-який Дизайн</h4>
                     <p class="text-gray-600" data-i18n="serv1_text">
                         Ми виготовляємо піддони суворо за Вашими кресленнями. Працюємо з усіма стандартними (1200x1000, 800x600, тощо) та нестандартними розмірами.
                     </p>
                 </div>
 
-                <!-- Service 2: Production on Demand -->
-                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
-                    <div class="text-4xl text-blue-600 mb-4">🏭</div>
+                <!-- Service 2: Production on Demand --><div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="text-4xl text-green-600 mb-4">🏭</div>
                     <h4 class="text-xl font-semibold mb-3" data-i18n="serv2_title">Швидкий Цикл Виробництва</h4>
                     <p class="text-gray-600" data-i18n="serv2_text">
                         Термін виготовлення — лише 15 днів з моменту фінального узгодження креслень. Ми надаємо пріоритет швидкості без шкоди для якості.
                     </p>
                 </div>
 
-                <!-- Service 3: Quality Guarantee -->
-                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
-                    <div class="text-4xl text-blue-600 mb-4">🌳</div>
+                <!-- Service 3: Quality Guarantee --><div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="text-4xl text-green-600 mb-4">🌳</div>
                     <h4 class="text-xl font-semibold mb-3" data-i18n="serv3_title">Відповідність ISPM 15</h4>
                     <p class="text-gray-600" data-i18n="serv3_text">
                         Вся дерев'яна продукція проходить термообробку (HT) та сертифікована з маркуванням ISPM 15 для безперешкодного міжнародного експорту.
@@ -175,8 +228,7 @@
         </div>
     </section>
 
-    <!-- Logistics Advantages Section -->
-    <section id="advantages" class="py-16 md:py-20 bg-blue-50">
+    <!-- Logistics Advantages Section --><section id="advantages" class="py-16 md:py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl font-bold text-gray-900 mb-12 text-center" data-i18n="sect_title_logist">
                 Ваша B2B Перевага: Бездоганна Логістика
@@ -185,8 +237,7 @@
             <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 items-center">
                 <div class="lg:col-span-1 space-y-6">
                     
-                    <!-- НОВИЙ БЛОК: Досвід -->
-                    <div class="flex p-4 bg-yellow-100 rounded-lg shadow-md border-l-4 border-yellow-500">
+                    <!-- Досвід --><div class="flex p-4 bg-yellow-100 rounded-lg shadow-md border-l-4 border-yellow-500">
                         <div class="flex-shrink-0 text-3xl mr-4 text-yellow-600">🏆</div>
                         <div>
                             <h4 class="text-lg font-semibold" data-i18n="adv4_title">Понад 20 Років Досвіду</h4>
@@ -194,8 +245,7 @@
                         </div>
                     </div>
                     
-                    <!-- Advantage 1: Fast Loading -->
-                    <div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
+                    <!-- Advantage 1: Fast Loading --><div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-600">
                         <div class="flex-shrink-0 text-3xl mr-4 text-green-600">⏱️</div>
                         <div>
                             <h4 class="text-lg font-semibold" data-i18n="adv1_title">Швидке Завантаження</h4>
@@ -203,8 +253,7 @@
                         </div>
                     </div>
 
-                    <!-- Advantage 2: Customs Handled -->
-                    <div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
+                    <!-- Advantage 2: Customs Handled --><div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-600">
                         <div class="flex-shrink-0 text-3xl mr-4 text-green-600">✅</div>
                         <div>
                             <h4 class="text-lg font-semibold" data-i18n="adv2_title">Самостійне Митне Оформлення</h4>
@@ -212,72 +261,57 @@
                         </div>
                     </div>
 
-                    <!-- Advantage 3: Capacity -->
-                    <div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-500">
+                    <!-- Advantage 3: Capacity --><div class="flex p-4 bg-white rounded-lg shadow-md border-l-4 border-green-600">
                         <div class="flex-shrink-0 text-3xl mr-4 text-green-600">📈</div>
                         <div>
                             <h4 class="text-lg font-semibold" data-i18n="adv3_title">Висока Місячна Потужність</h4>
-                            <p class="text-gray-600" data-i18n="adv3_text">Готові забезпечувати довгострокові замовлення з надійним обсягом постачання.</p>
+                            <p class="text-gray-600" data-i18n="adv3_text">Готові забезпечувати довгострокові замовлення з надійною обсягом постачання.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Image Gallery -->
-                <div class="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4 rounded-xl overflow-hidden shadow-2xl">
+                <!-- Image Gallery (Тепер завантажуємо з файлів) --><div class="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4 rounded-xl overflow-hidden shadow-2xl">
                     
-                    <!-- Головне зображення (буде займати більшу висоту на десктопі) -->
-                    <div class="col-span-2 lg:col-span-1 img-gallery-item-lg-main">
-                        <img src="loading_pallets.jpg" 
-                             alt="Піддони завантажені у вантажівку 1" 
-                             class="w-full h-full object-cover rounded-tl-xl lg:rounded-xl">
+                    <!-- Головне зображення: Loading Pallets --><div class="col-span-2 lg:col-span-1 img-gallery-item-lg-main">
+                        <img id="img-loading" src="pallets.jpg" alt="Піддони завантажені у вантажівку" class="w-full h-full object-cover">
                     </div>
                     
-                    <!-- Сітка з меншими зображеннями (розміщуються внизу або поруч) -->
-                    <div class="col-span-2 grid grid-cols-2 gap-4">
+                    <!-- Сітка з меншими зображеннями --><div class="col-span-2 grid grid-cols-2 gap-4">
                         <div class="img-gallery-item-lg">
-                            <img src="quality_control.jpg" 
-                                 alt="Контроль якості піддону з рулеткою" 
-                                 class="w-full h-full object-cover">
+                            <img id="img-quality" src="control.jpg" alt="Контроль якості піддону з рулеткою" class="w-full h-full object-cover">
                         </div>
                         <div class="img-gallery-item-lg">
-                            <img src="raw_material_check.jpg" 
-                                 alt="Перевірка якості сировини" 
-                                 class="w-full h-full object-cover">
+                            <img id="img-raw" src="materials.jpg" alt="Перевірка якості сировини" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
-                <!-- Кінець Image Gallery -->
                 
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-20 bg-white">
-        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gray-50 p-8 rounded-xl shadow-2xl border-t-4 border-blue-600">
+    <!-- Contact Section --><section id="contact" class="py-16 md:py-20 bg-white">
+        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gray-50 p-8 rounded-xl shadow-2xl border-t-4 border-green-600">
             <h3 class="text-3xl font-bold text-gray-900 mb-6" data-i18n="sect_title_contact">Розпочніть Ваше Замовлення</h3>
             <p class="text-xl text-gray-600 mb-8" data-i18n="contact_text">
                 Бажаєте забезпечити постачання піддонів на замовлення? Зв'яжіться безпосередньо з нашим Керівником відділу продажів.
             </p>
 
             <div class="space-y-4 mb-8">
-                <!-- Contact Person -->
-                <div class="flex items-center justify-center p-3 bg-white rounded-lg border">
-                    <div class="flex-shrink-0 text-2xl text-blue-600 mr-4">👤</div>
+                <!-- Contact Person --><div class="flex items-center justify-center p-3 bg-white rounded-lg border">
+                    <div class="flex-shrink-0 text-2xl text-green-600 mr-4">👤</div>
                     <p class="text-lg font-medium" data-i18n="contact_person_role_pre">Керівник відділу продажів:</p>
                     <p class="text-lg font-medium ml-1">Шапіро Геннадій Айзікович</p>
                 </div>
 
-                <!-- Email -->
-                <div class="flex items-center justify-center p-3 bg-white rounded-lg border">
-                    <div class="flex-shrink-0 text-2xl text-blue-600 mr-4">📧</div>
-                    <a href="mailto:tovpbsi@gmail.com" class="text-lg text-blue-600 hover:underline break-all">tovpbsi@gmail.com</a>
+                <!-- Email --><div class="flex items-center justify-center p-3 bg-white rounded-lg border">
+                    <div class="flex-shrink-0 text-2xl text-green-600 mr-4">📧</div>
+                    <a href="mailto:tovpbsi@gmail.com" class="text-lg text-green-600 hover:underline break-all">tovpbsi@gmail.com</a>
                 </div>
 
-                <!-- Phone -->
-                <div class="flex items-center justify-center p-3 bg-white rounded-lg border">
-                    <div class="flex-shrink-0 text-2xl text-blue-600 mr-4">📞</div>
-                    <a href="tel:+380964462281" class="text-lg text-blue-600 hover:underline">+38 096 446 2281</a>
+                <!-- Phone --><div class="flex items-center justify-center p-3 bg-white rounded-lg border">
+                    <div class="flex-shrink-0 text-2xl text-green-600 mr-4">📞</div>
+                    <a href="tel:+380964462281" class="text-lg text-green-600 hover:underline">+38 096 446 2281</a>
                 </div>
             </div>
             
@@ -287,15 +321,13 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
+    <!-- Footer --><footer class="bg-gray-800 text-white py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
             &copy; 2025 ТОВ ПРОМУБДСПОРТІНДУСТРІЯ. <span data-i18n="copyright">Всі Права Захищені.</span>
         </div>
     </footer>
 
-    <!-- JavaScript for Language Switching and Mobile Menu -->
-    <script>
+    <!-- JavaScript for Language Switching and Mobile Menu --><script>
         const translations = {
             'uk': {
                 'title': 'Промубдспортіндустрія | Виробник піддонів на замовлення',
@@ -315,8 +347,8 @@
                 'serv3_title': 'Відповідність ISPM 15',
                 'serv3_text': 'Вся дерев\'яна продукція проходить термообробку (HT) та сертифікована з маркуванням ISPM 15 для безперешкодного міжнародного експорту.',
                 'sect_title_logist': 'Ваша B2B Перевага: Бездоганна Логістика',
-                'adv4_title': 'Понад 20 Років Досвіду', // НОВИЙ ПЕРЕКЛАД
-                'adv4_text': 'Наш багаторічний досвід гарантує бездоганну якість виробництва та надійність кожного замовлення.', // НОВИЙ ПЕРЕКЛАД
+                'adv4_title': 'Понад 20 Років Досвіду', 
+                'adv4_text': 'Наш багаторічний досвід гарантує бездоганну якість виробництва та надійність кожного замовлення.', 
                 'adv1_title': 'Швидке Завантаження',
                 'adv1_text': 'Ми забезпечуємо швидке та професійне завантаження та кріплення піддонів лише за 1 день.',
                 'adv2_title': 'Самостійне Митне Оформлення',
@@ -330,7 +362,7 @@
                 'copyright': 'Всі Права Захищені.',
                 'select_language': 'Оберіть мову:'
             },
-            'en': {
+            'en': { 
                 'title': 'Promubdsportindustriya | Custom Pallet Manufacturer',
                 'header_title': 'TOV PROMUBDSPORTINDUSTRIYA',
                 'nav_services': 'Our Services',
@@ -348,8 +380,8 @@
                 'serv3_title': 'ISPM 15 Compliant',
                 'serv3_text': 'All wooden products are heat-treated (HT) and certified with ISPM 15 markings for smooth international export.',
                 'sect_title_logist': 'Your B2B Advantage: Seamless Logistics',
-                'adv4_title': 'Over 20 Years of Experience', // НОВИЙ ПЕРЕКЛАД
-                'adv4_text': 'Our long-standing experience guarantees impeccable production quality and reliability for every order.', // НОВИЙ ПЕРЕКЛАД
+                'adv4_title': 'Over 20 Years of Experience', 
+                'adv4_text': 'Our long-standing experience guarantees impeccable production quality and reliability for every order.', 
                 'adv1_title': 'Rapid Loading',
                 'adv1_text': 'We ensure fast and professional pallet loading and securing in just 1 day.',
                 'adv2_title': 'Self-Sufficient Customs Clearance',
@@ -362,7 +394,7 @@
                 'footer_text': 'TOV "Promubdsportindustriya", Ukraine. Serving European B2B clients.',
                 'copyright': 'All Rights Reserved.',
                 'select_language': 'Select language:'
-            },
+            }, 
             'de': {
                 'title': 'Promubdsportindustriya | Hersteller von Paletten nach Maß',
                 'header_title': 'GMBH PROMUBDSPORTINDUSTRIYA',
@@ -381,8 +413,8 @@
                 'serv3_title': 'ISPM 15 Konform',
                 'serv3_text': 'Alle Holzprodukte sind wärmebehandelt (HT) und mit der ISPM 15 Markierung für einen reibungslosen internationalen Export zertifiziert.',
                 'sect_title_logist': 'Ihr B2B-Vorteil: Nahtlose Logistik',
-                'adv4_title': 'Über 20 Jahre Erfahrung', // НОВИЙ ПЕРЕКЛАД
-                'adv4_text': 'Unsere langjährige Erfahrung garantiert eine einwandfreie Produktionsqualität und Zuverlässigkeit bei jeder Bestellung.', // НОВИЙ ПЕРЕКЛАД
+                'adv4_title': 'Über 20 Jahre Erfahrung', 
+                'adv4_text': 'Unsere langjährige Erfahrung garantiert eine einwandfreie Produktionsqualität und Zuverlässigkeit bei jeder Bestellung.', 
                 'adv1_title': 'Schnelles Verladen',
                 'adv1_text': 'Wir gewährleisten ein schnelles und professionelles Verladen und Sichern der Paletten in nur 1 Tag.',
                 'adv2_title': 'Eigenständige Zollabfertigung',
@@ -396,7 +428,7 @@
                 'copyright': 'Alle Rechte vorbehalten.',
                 'select_language': 'Sprache auswählen:'
             },
-            'pl': {
+            'pl': { 
                 'title': 'Promubdsportindustriya | Producent Palet na Zamówienie',
                 'header_title': 'Sp. z o.o. PROMUBDSPORTINDUSTRIYA',
                 'nav_services': 'Nasze Usługi',
@@ -413,95 +445,93 @@
                 'serv2_text': 'Czas realizacji to tylko 15 dni od ostatecznego zatwierdzenia rysunków technicznych. Priorytetem jest szybkość bez uszczerbku dla jakości.',
                 'serv3_title': 'Zgodność z ISPM 15',
                 'serv3_text': 'Wszystkie produkty drewniane są poddawane obróbce cieplnej (HT) i posiadają certyfikat z oznaczeniem ISPM 15 dla sprawnego eksportu międzynarodowego.',
-                'sect_title_logist': 'Twoja Przewaga B2B: Безproblemowa Logistyka',
-                'adv4_title': 'Ponad 20 Lat Doświadczenia', // НОВИЙ ПЕРЕКЛАД
-                'adv4_text': 'Nasze wieloletnie doświadczenie gwarantuje nienaganną jakość produkcji i niezawodność każdego zamówienia.', // НОВИЙ ПЕРЕКЛАД
+                'sect_title_logist': 'Twoja Przewaga B2B: Bezproblemowa Logistyka',
+                'adv4_title': 'Ponad 20 Lat Doświadczenia', 
+                'adv4_text': 'Nasze wieloletnie doświadczenie gwarantuje nienaganną jakość produkcji i niezawodność każdego zamówienia.', 
                 'adv1_title': 'Szybki Załadunek',
                 'adv1_text': 'Zapewniamy szybki i profesjonalny załadunek oraz zabezpieczenie palet w zaledwie 1 dzień.',
                 'adv2_title': 'Samodzielna Odprawa Celna',
                 'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łańцуг dostaw.',
-                'adv3_title': 'Wysoka Zdolność Miesięczna',
-                'adv3_text': 'Gotowi zabezpieczyć długoterminowe zamówлення o niezawodnej wielkości dostaw.',
+                'adv3_title': 'Wysoka Zdolność Miesięчна',
+                'adv3_text': 'Gotowi zabezpieчить довготермінові замовлення o niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoje Zamówлення',
-                'contact_text': 'Gotowi zabezpieczyć dostawу palet na zamówлення? Skontaktuj się bezpośredньо з нашим Керівником Sprzedaży.',
+                'contact_text': 'Gotowi zabezpieчити доставу палет на замовлення? Skontaktuj się bezpośrednio з нашим Керівником Sprzedaży.',
                 'contact_person_role_pre': 'Kierownik Sprzedaży:',
                 'footer_text': 'Sp. z o.o. "Promubdsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
                 'copyright': 'Wszelkie Prawa Zastrzeжені.',
                 'select_language': 'Wybierz język:'
             }
-        };
+        };
 
-        let currentLang = 'uk';
-        const desktopLangSwitcher = document.getElementById('language-switcher-desktop');
-        const mobileLangSwitcher = document.getElementById('language-switcher-mobile');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        let currentLang = 'uk';
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
         
-        // Helper function to update active state for all language buttons
-        function updateLangButtonState(lang) {
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.classList.remove('active');
-                if (button.getAttribute('data-lang') === lang) {
-                    button.classList.add('active');
-                }
-            });
-        }
+        // Helper function to update active state for all language buttons
+        function updateLangButtonState(lang) {
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('active');
+                }
+            });
+        }
 
-        function switchLanguage(lang) {
-            if (!translations[lang]) return;
+        function switchLanguage(lang) {
+            if (!translations[lang]) return;
 
-            currentLang = lang;
-            document.documentElement.lang = lang; // Update HTML lang attribute
+            currentLang = lang;
+            document.documentElement.lang = lang; // Update HTML lang attribute
 
-            // Update all elements with data-i18n attribute
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    // Use innerHTML for the hero heading which contains a <br>
-                    element.innerHTML = translations[lang][key]; 
-                }
-            });
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    // Використовуємо innerHTML, оскільки 'hero_heading' містить <br>
+                    element.innerHTML = translations[lang][key]; 
+                }
+            });
 
-            // Special handling for title tag
-            document.title = translations[lang]['title'];
+            // Special handling for title tag
+            document.title = translations[lang]['title'];
 
-            // Update active button state globally
-            updateLangButtonState(lang);
-        }
+            // Update active button state globally
+            updateLangButtonState(lang);
+        }
 
-        // --- Mobile Menu Logic ---
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('open');
-            // Toggle body scroll lock
-            document.body.classList.toggle('overflow-hidden'); 
-        }
+        // --- Mobile Menu Logic ---
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+            // Toggle body scroll lock
+            document.body.classList.toggle('overflow-hidden'); 
+        }
 
-        // Close mobile menu and scroll to section on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                document.body.classList.remove('overflow-hidden');
-            });
-        });
-        
-        // Initialize listeners and set initial state
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set up event listeners for mobile menu
-            mobileMenuButton.addEventListener('click', toggleMobileMenu);
-            mobileMenuClose.addEventListener('click', toggleMobileMenu);
+        // Close mobile menu and scroll to section on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
+        
+        // Initialize listeners and set initial state
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set up event listeners for mobile menu
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            mobileMenuClose.addEventListener('click', toggleMobileMenu);
 
-            // Set up event listeners for language buttons (desktop and mobile)
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const lang = event.target.getAttribute('data-lang');
-                    switchLanguage(lang);
-                });
-            });
+            // Set up event listeners for language buttons (desktop and mobile)
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const lang = event.target.getAttribute('data-lang');
+                    switchLanguage(lang);
+                });
+            });
 
-            // Set the initial language (defaults to 'uk' defined in the HTML body)
-            switchLanguage(currentLang); 
-        });
-    </script>
+            // Set the initial language (defaults to 'uk' defined in the HTML body)
+            switchLanguage(currentLang); 
+        });
+    </script>
 </body>
 </html>
