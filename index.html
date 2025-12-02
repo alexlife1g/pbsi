@@ -515,18 +515,19 @@
             <form id="contactForm" class="space-y-4 text-left">
                 <!-- Ім'я / Компанія (ДОДАНО name АТРИБУТИ) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="contactName" name="name" placeholder="Ваше Ім'я (обов'язково)" required class="form-input">
-                    <input type="text" id="contactCompany" name="company" placeholder="Назва Компанії" class="form-input">
+                    <!-- Оновлено data-i18n-ph для Placeholder -->
+                    <input type="text" id="contactName" name="name" data-i18n-ph="ph_name" placeholder="Ваше Ім'я (обов'язково)" required class="form-input">
+                    <input type="text" id="contactCompany" name="company" data-i18n-ph="ph_company" placeholder="Назва Компанії" class="form-input">
                 </div>
                 
                 <!-- Email / Телефон (ДОДАНО name АТРИБУТИ. Email використовує _replyto для Formspree) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="email" id="contactEmail" name="_replyto" placeholder="Email (обов'язково)" required class="form-input">
-                    <input type="tel" id="contactPhone" name="phone" placeholder="Телефон" class="form-input">
+                    <input type="email" id="contactEmail" name="_replyto" data-i18n-ph="ph_email" placeholder="Email (обов'язково)" required class="form-input">
+                    <input type="tel" id="contactPhone" name="phone" data-i18n-ph="ph_phone" placeholder="Телефон" class="form-input">
                 </div>
                 
                 <!-- Опис/Креслення (ДОДАНО name АТРИБУТ) -->
-                <textarea id="contactDetails" name="details" rows="4" placeholder="Специфікації піддонів (розмір, кількість, порода деревини, посилання на креслення)" required class="form-input"></textarea>
+                <textarea id="contactDetails" name="details" rows="4" data-i18n-ph="ph_details" placeholder="Специфікації піддонів (розмір, кількість, порода деревини, посилання на креслення)" required class="form-input"></textarea>
 
                 <!-- Кнопка Надсилання -->
                 <button type="submit" class="w-full inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white shadow-lg transform hover:scale-105 cta-button mt-6" data-i18n="form_button">
@@ -569,7 +570,7 @@
     <script>
         // *** КОНФІГУРАЦІЯ FORMSPREE: ЗАМІНІТЬ 'YOUR_UNIQUE_CODE' НА ВАШ КЛЮЧ ***
         // Отримайте цей ключ після створення форми на сайті Formspree.
-        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xrbnklpz"; 
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_UNIQUE_CODE"; 
         
         const translations = {
             'uk': {
@@ -623,7 +624,13 @@
                 'modal_success_message': 'Ваш запит отримано. Ми зв\'яжемося з Вами протягом 24 годин для обговорення деталей та прорахунку.',
                 'modal_error_title': 'Помилка Надсилання',
                 'modal_error_message': 'Виникла помилка під час надсилання запиту. Будь ласка, спробуйте ще раз або зв\'яжіться з нами за email/телефоном.',
-                'modal_close': 'Закрити'
+                'modal_close': 'Закрити',
+                // НОВІ КЛЮЧІ ДЛЯ ФОРМИ
+                'ph_name': "Ваше Ім'я (обов'язково)",
+                'ph_company': "Назва Компанії",
+                'ph_email': "Email (обов'язково)",
+                'ph_phone': "Телефон",
+                'ph_details': "Специфікації піддонів (розмір, кількість, порода деревини, посилання на креслення)"
             },
             'en': { 
                 'title': 'PROMBUDSPORTINDUSTRIYA: Custom Pallet Manufacturing & Export (ISPM 15, FSC)',
@@ -676,7 +683,13 @@
                 'modal_success_message': 'Your request has been received. We will contact you within 24 hours to discuss details and provide a quote.',
                 'modal_error_title': 'Submission Error',
                 'modal_error_message': 'An error occurred while submitting your request. Please try again or contact us via email/phone.',
-                'modal_close': 'Close'
+                'modal_close': 'Close',
+                // НОВІ КЛЮЧІ ДЛЯ ФОРМИ
+                'ph_name': "Your Name (required)",
+                'ph_company': "Company Name",
+                'ph_email': "Email (required)",
+                'ph_phone': "Phone",
+                'ph_details': "Pallet specifications (size, quantity, wood type, drawing link)"
             }, 
             'de': {
                 'title': 'PROMBUDSPORTINDUSTRIYA: Hersteller von Paletten nach Maß & Export (ISPM 15, FSC)',
@@ -729,7 +742,13 @@
                 'modal_success_message': 'Ihre Anfrage wurde empfangen. Wir werden Sie innerhalb von 24 Stunden kontaktieren, um Details zu besprechen und ein Angebot zu erstellen.',
                 'modal_error_title': 'Übermittlungsfehler',
                 'modal_error_message': 'Beim Senden Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per E-Mail/Telefon.',
-                'modal_close': 'Schließen'
+                'modal_close': 'Schließen',
+                // НОВІ КЛЮЧІ ДЛЯ ФОРМИ
+                'ph_name': "Ihr Name (erforderlich)",
+                'ph_company': "Firmenname",
+                'ph_email': "Email (erforderlich)",
+                'ph_phone': "Telefon",
+                'ph_details': "Palettenspezifikationen (Größe, Menge, Holzart, Zeichnungslink)"
             },
             'pl': { 
                 'title': 'PROMBUDSPORTINDUSTRIYA: Produkcja i Eksport Palet na Zamówienie (ISPM 15, FSC)',
@@ -769,7 +788,7 @@
                 'adv1_title': 'Szybki Załadunek',
                 'adv1_text': 'Zapewniamy szybki i profesjonalny załadunek oraz zabezpieczenie palet w zaledwie 1 день.',
                 'adv2_title': 'Samodzielna Odprawa Celna',
-                'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łańцуг dostaw.',
+                'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łaцуг dostaw.',
                 'adv3_title': 'Wysoka Miesięчна Zдолність',
                 'adv3_text': 'Gotowi zabezpieczać długoterminowe zamówленна о niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoє Zamówienie',
@@ -782,7 +801,13 @@
                 'modal_success_message': 'Otrzymaliśmy Państwa prośbę. Skontaktujemy się z Państwem w ciągu 24 godzin w celu omówienia szczegółów i przygotowania wyceny.',
                 'modal_error_title': 'Błąd Wysłania',
                 'modal_error_message': 'Wystąpił błąd podczas wysyłania Państwa prośby. Proszę spróbować ponownie lub skontaktować się z nami mailowo/telefonicznie.',
-                'modal_close': 'Zamknij'
+                'modal_close': 'Zamknij',
+                // НОВІ КЛЮЧІ ДЛЯ ФОРМИ
+                'ph_name': "Twoje Imię (wymagane)",
+                'ph_company': "Nazwa Firmy",
+                'ph_email': "Email (wymagany)",
+                'ph_phone': "Telefon",
+                'ph_details': "Specyfikacje palet (rozmiar, ilość, rodzaj drewna, link do rysunku)"
             }
         };
 
@@ -812,6 +837,15 @@
             currentLang = lang;
             document.documentElement.lang = lang; // Update HTML lang attribute
 
+            // Визначення ключів для полів форми
+            const placeholderKeys = {
+                'contactName': 'ph_name',
+                'contactCompany': 'ph_company',
+                'contactEmail': 'ph_email',
+                'contactPhone': 'ph_phone',
+                'contactDetails': 'ph_details'
+            };
+
             // Update all elements with data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
@@ -825,20 +859,18 @@
                         element.setAttribute('content', translations[lang]['og_title']);
                     } else if (element.tagName === 'META' && element.getAttribute('property') === 'og:description') {
                         element.setAttribute('content', translations[lang]['meta_description']);
-                    } else if (element.id === 'contactName' || element.id === 'contactCompany' || element.id === 'contactEmail' || element.id === 'contactPhone' || element.id === 'contactDetails') {
-                        // Оновлення placeholder для полів форми
-                        const placeholders = {
-                            'contactName': { uk: "Ваше Ім'я (обов'язково)", en: "Your Name (required)", de: "Ihr Name (erforderlich)", pl: "Twoje Imię (wymagane)" },
-                            'contactCompany': { uk: "Назва Компанії", en: "Company Name", de: "Firmenname", pl: "Nazwa Firmy" },
-                            'contactEmail': { uk: "Email (обов'язково)", en: "Email (required)", de: "Email (erforderlich)", pl: "Email (wymagany)" },
-                            'contactPhone': { uk: "Телефон", en: "Phone", de: "Telefon", pl: "Telefon" },
-                            'contactDetails': { uk: "Специфікації піддонів (розмір, кількість, порода деревини, посилання на креслення)", en: "Pallet specifications (size, quantity, wood type, drawing link)", de: "Palettenspezifikationen (Größe, Menge, Holzart, Zeichnungslink)", pl: "Specyfikacje palet (rozmiar, ilość, rodzaj drewna, link do rysunku)" }
-                        };
-                        element.setAttribute('placeholder', placeholders[element.id][lang] || placeholders[element.id]['uk']);
                     } else {
                         // For other elements, use innerHTML as 'hero_heading' contains <br>
                         element.innerHTML = translations[lang][key]; 
                     }
+                }
+            });
+            
+            // НОВИЙ БЛОК: Оновлення Placeholder (використовує ключі з translations)
+            document.querySelectorAll('input[id^="contact"], textarea[id^="contact"]').forEach(element => {
+                const key = placeholderKeys[element.id];
+                if (key && translations[lang][key]) {
+                    element.setAttribute('placeholder', translations[lang][key]);
                 }
             });
             
