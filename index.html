@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Optimization Meta Tags (ОПТИМІЗОВАНО) -->
-    <!-- Title: Включено ключові слова "Виробництво", "Експорт", "Піддонів", "ISPM 15, FSC" -->
     <title data-i18n="title">ПРОМБУДСПОРТІНДУСТРІЯ: Виробництво, Експорт Дерев'яних Піддонів на Замовлення (ISPM 15, FSC)</title>
-    
-    <!-- Meta Description: Додано ключові слова, CTA та переваги для підвищення CTR -->
     <meta name="description" data-i18n="meta_description" content="ПРОМБУДСПОРТІНДУСТРІЯ — надійний B2B виробник дерев'яних піддонів на замовлення з України. Експорт у Європу. ISPM 15, FSC сертифіковано. Виготовлення за Вашими кресленнями за 15 днів. Зв'яжіться для прорахунку!">
     
     <link rel="canonical" href="https://yourwebsite.com/">
@@ -75,15 +72,39 @@
             background-color: #111827;
             overflow-x: hidden;
         }
+
+        /* --- ПОКРАЩЕНИЙ ПЕРЕМИКАЧ МОВИ (CAPSULE STYLE) --- */
+        .lang-switcher-container {
+            padding: 4px; /* Більший внутрішній відступ для елегантності */
+            border-radius: 9999px; /* Повністю округла форма капсули */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            /* Тонка внутрішня тінь для ефекту "втоплення" */
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4); 
+        }
+
         .lang-button {
-            padding: 4px 8px; font-size: 0.8rem; cursor: pointer; border-radius: 6px; transition: all 0.2s; color: white;
+            padding: 6px 14px; /* Симетричні відступи */
+            font-size: 0.9rem;
+            cursor: pointer; 
+            border-radius: 9999px; /* Кругла кнопка */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #cbd5e1; /* Gray-300 */
         }
         .lang-button.active {
-            background-color: #059669; color: #ffffff; font-weight: 600; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            background-color: #10b981; /* Green-500 для вибору */
+            color: #111827; /* Темний текст на активному фоні */
+            font-weight: 700;
+            /* Зовнішня тінь + внутрішнє світіння для активного стану */
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.5);
         }
         .lang-button:not(.active):hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
         }
+        
+        /* Стиль для мобільного меню */
         .mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
@@ -127,63 +148,109 @@
             }
         }
         
-        /* НОВІ СТИЛІ ДЛЯ ПОКРАЩЕННЯ VIZIO (iOS/Glassmorphism) */
-        /* Посилення тіні та розмиття для скляних елементів */
+        /* Glassmorphism/iOS Style */
         .glass-card {
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Глибша тінь */
             backdrop-filter: blur(12px); /* Більше розмиття */
             -webkit-backdrop-filter: blur(12px);
         }
         
-        /* СТИЛЬ CTA КНОПКИ (ОНОВЛЕНО: Більш насичений градієнт, жирний текст, ВИРАЗНИЙ пульс) */
+        /* СТИЛЬ CTA КНОПКИ (Без змін) */
         .cta-button {
-            /* Більш насичений градієнт: Green-400 до Green-700 */
             background-image: linear-gradient(145deg, #34d399, #047857);
             transition: all 0.3s ease-in-out; 
-            /* Зроблено текст контрастнішим */
             text-shadow: 0 0 4px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.7);
-            /* Прискорений та посилений пульс: 2.0s */
             animation: pulse-vibrant 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
 
-        /* Анімація світіння пульсу (МАКСИМАЛЬНО ПІДСИЛЕНО) */
+        /* Анімація світіння пульсу */
         @keyframes pulse-vibrant {
             0%, 100% {
-                /* Базове світіння - трохи більше і яскравіше */
                 box-shadow: 0 0 15px rgba(167, 243, 208, 0.4); 
             }
             50% {
-                /* Пікове, інтенсивне неонове світіння */
                 box-shadow: 0 0 80px rgba(52, 211, 163, 1.0), 0 10px 20px rgba(0, 0, 0, 0.5); 
             }
         }
 
         /* Сильніше світіння при наведенні */
         .cta-button:hover {
-            transform: scale(1.08); /* Сильніше масштабування */
+            transform: scale(1.08); 
             box-shadow: 0 0 60px rgba(52, 211, 163, 1), 0 15px 25px -5px rgba(0, 0, 0, 0.4);
         }
         
-        /* Покращений Hover ефект для карток послуг (ЗЕЛЕНИЙ - для секції Services) */
+        /* Покращений Hover ефект для карток послуг (ЗЕЛЕНИЙ) */
         .glass-card-hover:hover {
              /* Підйом та більш яскраве світіння */
              transform: translateY(-5px);
-             /* Збільшена яскравість (0.7 opacity) зеленого світіння та менше чорної тіні */
+             /* Збільшена яскравість зеленого світіння та менше чорної тіні */
              box-shadow: 0 0 40px 0 rgba(5, 150, 105, 0.7), 0 8px 16px 0 rgba(0, 0, 0, 0.3);
         }
 
-        /* НОВИЙ СТИЛЬ: Жовтий Hover ефект для картки Досвіду */
+        /* Жовтий Hover ефект для картки Досвіду */
         .highlight-card-hover:hover {
              transform: translateY(-5px);
              /* Жовте світіння (Yellow-400 / #FACC15) */
              box-shadow: 0 0 40px 0 rgba(250, 204, 21, 0.5), 0 8px 16px 0 rgba(0, 0, 0, 0.3);
         }
 
-        /* Стиль для стрілки процесу (між картками) */
         .process-arrow {
             color: #34d399; /* Green-400 */
             opacity: 0.7;
             font-weight: 900;
+        }
+
+        /* 2. Стиль для H1 Hero (повернуто до оригінального) */
+        .hero-heading-pop {
+             /* Видалено зайву тінь */
+             text-shadow: none;
+        }
+
+        /* 3. Стиль для Навігаційних Посилань (повернуто до оригінального) */
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #34d399 !important;
+            text-shadow: none; /* Видалено світіння */
+        }
+
+        /* Стиль для форми */
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #10b981; /* Green-500 */
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Стиль для кастомного модального вікна */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background: #1f2937; /* Gray-800 */
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
@@ -191,11 +258,11 @@
 
     <header class="bg-transparent text-white shadow-none absolute w-full top-0 z-30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Змінено H1 на P, щоб H1 був лише в Hero Section -->
             <p class="text-xl sm:text-2xl font-bold tracking-tight truncate max-w-[60%]" data-i18n="header_title">ТОВ ПРОМБУДСПОРТІНДУСТРІЯ</p>
             
             <div class="flex items-center space-x-4">
-                <div id="language-switcher-desktop" class="hidden md:flex space-x-1.5 border border-white/30 rounded-xl p-0.5 bg-white/10 backdrop-blur-sm">
+                <!-- ЗАСТОСОВАНО НОВИЙ СТИЛЬ: lang-switcher-container -->
+                <div id="language-switcher-desktop" class="hidden md:flex space-x-1.5 lang-switcher-container">
                     <button class="lang-button active" data-lang="uk">UA</button>
                     <button class="lang-button" data-lang="en">EN</button>
                     <button class="lang-button" data-lang="de">DE</button>
@@ -203,8 +270,9 @@
                 </div>
 
                 <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                    <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ -->
                     <a href="#services" class="hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
-                    <a href="#process" class="hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> <!-- НОВА НАВІГАЦІЯ -->
+                    <a href="#process" class="hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> 
                     <a href="#advantages" class="hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
                     <a href="#contact" class="hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
                 </nav>
@@ -229,13 +297,14 @@
 
         <nav class="flex flex-col space-y-6 text-2xl font-semibold mb-10">
             <a href="#services" class="hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
-            <a href="#process" class="hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> <!-- НОВА НАВІГАЦІЯ -->
+            <a href="#process" class="hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> 
             <a href="#advantages" class="hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
             <a href="#contact" class="hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
         </nav>
 
         <div class="text-lg font-medium mb-4" data-i18n="select_language">Оберіть мову:</div>
-        <div id="language-switcher-mobile" class="flex space-x-3 border border-white/30 rounded-lg p-1.5 self-center">
+        <!-- ЗАСТОСОВАНО НОВИЙ СТИЛЬ: lang-switcher-container -->
+        <div id="language-switcher-mobile" class="flex space-x-3 lang-switcher-container self-center">
             <button class="lang-button lang-button-mobile active" data-lang="uk">UA</button>
             <button class="lang-button lang-button-mobile" data-lang="en">EN</button>
             <button class="lang-button lang-button-mobile" data-lang="de">DE</button>
@@ -246,21 +315,17 @@
 
     <section id="hero-section" class="hero-bg min-h-screen flex items-center justify-center py-24 md:py-32 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
-            <!-- ДОДАНО: class="glass-card" для посилення ефекту Glassmorphism -->
             <div class="bg-gray-900/60 p-6 md:p-12 rounded-3xl shadow-2xl max-w-4xl mx-auto border border-white/10 text-white glass-card"> 
-                <!-- ОНОВЛЕНО: слоган -->
                 <p class="text-lg font-semibold text-green-400 mb-2 uppercase tracking-wider" data-i18n="hero_tagline">B2B Виробництво Дерев'яних Піддонів</p>
                 
-                <!-- Головний H1-заголовок (ОНОВЛЕНО) -->
+                <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ -->
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight" data-i18n="hero_heading">
                     Дерев'яні Піддони для Бізнесу <br class="hidden sm:inline"> Якість, Перевірена Часом
                 </h1>
                 
-                <!-- ОНОВЛЕНО: Текст опису з акцентом на дерев'яних піддонах -->
                 <p class="text-base sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto" data-i18n="hero_text">
                     Ми — надійний український виробник, що спеціалізується на виготовленні дерев'яних піддонів та палет за індивідуальними кресленнями. Гарантуємо якість та експортну готовність натуральної деревини.
                 </p>
-                <!-- ОНОВЛЕНО: Додано font-bold для жирного тексту та class="cta-button" для градієнта та пульсу -->
                 <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white shadow-lg transform hover:scale-105 cta-button" data-i18n="hero_button">
                     Надішліть Ваші Креслення Зараз
                 </a>
@@ -282,14 +347,13 @@
     <!-- Services Section -->
     <section id="services" class="py-16 md:py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- ОНОВЛЕНО: H2 -->
+            <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ H2 -->
             <h2 class="text-3xl font-bold text-white mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_spec">
                 Наша Спеціалізація у Виробництві Піддонів
             </h2>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"> 
                 <!-- Service 1: Custom Dimensions (Glassmorphism Card) -->
-                <!-- ДОДАНО: class="glass-card-hover" для посилення ефекту при наведенні -->
                 <div class="bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4">📐</div>
                     <h4 class="text-xl font-semibold mb-3 text-white" data-i18n="serv1_title">Будь-який Розмір, Будь-який Дизайн</h4>
@@ -299,7 +363,6 @@
                 </div>
 
                 <!-- Service 2: Production on Demand (Glassmorphism Card) -->
-                <!-- ДОДАНО: class="glass-card-hover" -->
                 <div class="bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4">🏭</div>
                     <h4 class="text-xl font-semibold mb-3 text-white" data-i18n="serv2_title">Швидкий Цикл Виробництва</h4>
@@ -309,7 +372,6 @@
                 </div>
 
                 <!-- Service 3: Quality Guarantee (Glassmorphism Card) -->
-                <!-- ДОДАНО: class="glass-card-hover" -->
                 <div class="bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4">🌳</div>
                     <h4 class="text-xl font-semibold mb-3 text-white" data-i18n="serv3_title">Відповідність ISPM 15</h4>
@@ -324,12 +386,11 @@
     <!-- НОВА СЕКЦІЯ: Процес (ЗІ СТРІЛКАМИ) -->
     <section id="process" class="py-16 md:py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- ОНОВЛЕНО: Заголовок секції -->
+            <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ H2 -->
             <h2 class="text-3xl font-bold text-white mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_process">
                 Наш Процес: Від Креслення до Готового Продукту
             </h2>
 
-            <!-- ОНОВЛЕНО: Використовуємо Flexbox на великих екранах для розміщення стрілок -->
             <div class="flex flex-col lg:flex-row lg:justify-between lg:space-x-4 gap-6">
                 
                 <!-- Крок 1: Замовлення та Креслення -->
@@ -342,11 +403,11 @@
                     <p class="text-sm font-medium text-yellow-400 mt-3" data-i18n="proc1_time">Термін: 1 день</p>
                 </div>
                 
-                <!-- Стрілка 1 (показується тільки на Lg) - ЗМЕНШЕНО РОЗМІР! -->
+                <!-- Стрілка 1 (показується тільки на Lg) -->
                 <div class="hidden lg:flex lg:items-center text-3xl process-arrow">→</div>
 
                 <!-- Крок 2: Виробництво та Сертифікація -->
-                <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl border border-white/10 transition duration-300 glass-card-hover">
+                <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4 font-extrabold">2</div>
                     <h3 class="text-xl font-semibold mb-2 text-white" data-i18n="proc2_title">Виготовлення та Термообробка (HT)</h3>
                     <p class="text-gray-300 text-sm" data-i18n="proc2_text">
@@ -355,11 +416,11 @@
                     <p class="text-sm font-medium text-yellow-400 mt-3" data-i18n="proc2_time">Термін: до 15 днів</p>
                 </div>
                 
-                <!-- Стрілка 2 (показується тільки на Lg) - ЗМЕНШЕНО РОЗМІР! -->
+                <!-- Стрілка 2 (показується тільки на Lg) -->
                 <div class="hidden lg:flex lg:items-center text-3xl process-arrow">→</div>
                 
                 <!-- Крок 3: Логістика та Митниця -->
-                <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl border border-white/10 transition duration-300 glass-card-hover">
+                <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4 font-extrabold">3</div>
                     <h3 class="text-xl font-semibold mb-2 text-white" data-i18n="proc3_title">Митне Оформлення та Завантаження</h3>
                     <p class="text-gray-300 text-sm" data-i18n="proc3_text">
@@ -375,15 +436,15 @@
     <!-- Logistics Advantages Section -->
     <section id="advantages" class="py-16 md:py-20 bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- ОНОВЛЕНО: H2 -->
-            <h2 class="text-3xl font-bold text-white mb-12 text-center" data-i18n="sect_title_logist">
+            <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ H2 -->
+            <h2 class="text-3xl font-bold text-white mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_logist">
                 Ваша B2B Перевага: Бездоганна Логістика
             </h2>
 
             <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 items-center">
                 <div class="lg:col-span-1 space-y-6">
                     
-                    <!-- Досвід (Highlighted Card) - ОНОВЛЕНО: class="transition duration-300 highlight-card-hover" -->
+                    <!-- Досвід (Highlighted Card) -->
                     <div class="flex p-4 bg-yellow-900/30 rounded-2xl shadow-lg border-l-4 border-yellow-400 text-white backdrop-blur-sm transition duration-300 highlight-card-hover">
                         <div class="flex-shrink-0 text-3xl mr-4 text-yellow-300">🏆</div>
                         <div>
@@ -392,7 +453,7 @@
                         </div>
                     </div>
                     
-                    <!-- Advantage 1: Fast Loading (Glassmorphism Card) - ОНОВЛЕНО: Додано class="transition duration-300" -->
+                    <!-- Advantage 1: Fast Loading (Glassmorphism Card) -->
                     <div class="flex p-4 bg-white/5 rounded-2xl shadow-lg backdrop-blur-sm border-l-4 border-green-400 text-white transition duration-300 glass-card-hover">
                         <div class="flex-shrink-0 text-3xl mr-4 text-green-400">⏱️</div>
                         <div>
@@ -401,7 +462,7 @@
                         </div>
                     </div>
 
-                    <!-- Advantage 2: Customs Handled (Glassmorphism Card) - ОНОВЛЕНО: Додано class="transition duration-300" -->
+                    <!-- Advantage 2: Customs Handled (Glassmorphism Card) -->
                     <div class="flex p-4 bg-white/5 rounded-2xl shadow-lg backdrop-blur-sm border-l-4 border-green-400 text-white transition duration-300 glass-card-hover">
                         <div class="flex-shrink-0 text-3xl mr-4 text-green-400">✅</div>
                         <div>
@@ -410,7 +471,7 @@
                         </div>
                     </div>
 
-                    <!-- Advantage 3: Capacity (Glassmorphism Card) - ОНОВЛЕНО: Додано class="transition duration-300" -->
+                    <!-- Advantage 3: Capacity (Glassmorphism Card) -->
                     <div class="flex p-4 bg-white/5 rounded-2xl shadow-lg backdrop-blur-sm border-l-4 border-green-400 text-white transition duration-300 glass-card-hover">
                         <div class="flex-shrink-0 text-3xl mr-4 text-green-400">📈</div>
                         <div>
@@ -447,35 +508,40 @@
         <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gray-800 p-8 rounded-3xl shadow-2xl border-t-4 border-green-500 text-white glass-card">
             <h3 class="text-3xl font-bold text-white mb-6" data-i18n="sect_title_contact">Розпочніть Ваше Замовлення</h3>
             <p class="text-xl text-gray-300 mb-8" data-i18n="contact_text">
-                Бажаєте забезпечити постачання піддонів на замовлення? Зв'яжіться безпосередньо з нашим Керівником відділу продажів.
+                Бажаєте забезпечити постачання піддонів на замовлення? Надішліть нам запит на розрахунок!
             </p>
 
-            <div class="space-y-4 mb-8">
-                <!-- Contact Person: Two-column layout (Glassmorphism Card) -->
-                <!-- ДОДАНО: class="glass-card-hover" -->
-                <div class="flex items-center justify-between p-5 bg-white/5 rounded-2xl shadow-lg border border-white/10 transition duration-300 glass-card-hover">
-                    <div class="flex items-center text-gray-200">
-                        <div class="flex-shrink-0 text-2xl text-green-400 mr-4">👤</div>
-                        <p class="text-base sm:text-lg font-medium" data-i18n="contact_person_role_pre">Керівник відділу продажів:</p>
-                    </div>
-                    <p class="text-base sm:text-lg font-bold text-white text-right ml-4">Шапіро Геннадій Айзікович</p>
+            <!-- НОВА ФУНКЦІОНАЛЬНА ФОРМА -->
+            <form id="contactForm" class="space-y-4 text-left">
+                <!-- Ім'я / Компанія (ДОДАНО name АТРИБУТИ) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" id="contactName" name="name" placeholder="Ваше Ім'я (обов'язково)" required class="form-input">
+                    <input type="text" id="contactCompany" name="company" placeholder="Назва Компанії" class="form-input">
                 </div>
+                
+                <!-- Email / Телефон (ДОДАНО name АТРИБУТИ. Email використовує _replyto для Formspree) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="email" id="contactEmail" name="_replyto" placeholder="Email (обов'язково)" required class="form-input">
+                    <input type="tel" id="contactPhone" name="phone" placeholder="Телефон" class="form-input">
+                </div>
+                
+                <!-- Опис/Креслення (ДОДАНО name АТРИБУТ) -->
+                <textarea id="contactDetails" name="details" rows="4" placeholder="Специфікації піддонів (розмір, кількість, порода деревини, посилання на креслення)" required class="form-input"></textarea>
 
-                <!-- Email: Centered icon and link (Glassmorphism Card) -->
-                <!-- ДОДАНО: class="glass-card-hover" -->
-                <div class="flex flex-col items-center p-5 bg-white/5 rounded-2xl shadow-lg border border-white/10 transition duration-300 glass-card-hover">
-                    <div class="flex-shrink-0 text-3xl text-green-400 mb-2">📧</div>
-                    <a href="mailto:tovpbsi@gmail.com" class="text-lg font-bold text-green-400 hover:text-green-300 hover:underline break-all">tovpbsi@gmail.com</a>
-                </div>
+                <!-- Кнопка Надсилання -->
+                <button type="submit" class="w-full inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white shadow-lg transform hover:scale-105 cta-button mt-6" data-i18n="form_button">
+                    Надіслати Запит на Розрахунок
+                </button>
 
-                <!-- Phone: Centered icon and link (Glassmorphism Card) -->
-                <!-- ДОДАНО: class="glass-card-hover" -->
-                <div class="flex flex-col items-center p-5 bg-white/5 rounded-2xl shadow-lg border border-white/10 transition duration-300 glass-card-hover">
-                    <div class="flex-shrink-0 text-3xl text-green-400 mb-2">📞</div>
-                    <a href="tel:+380503516943" class="text-lg font-bold text-green-400 hover:text-green-300 hover:underline">+38 050 351 6943</a>
+                <!-- Статичні контакти, якщо форма не є пріоритетом (ЗМЕНШЕНО) -->
+                <p class="text-center text-sm text-gray-400 pt-4">Або зв'яжіться безпосередньо:</p>
+                <div class="flex justify-center space-x-6 text-sm">
+                     <a href="mailto:tovpbsi@gmail.com" class="hover:text-green-400 hover:underline">📧 tovpbsi@gmail.com</a>
+                     <a href="tel:+380503516943" class="hover:text-green-400 hover:underline">📞 +38 050 351 6943</a>
                 </div>
-            </div>
-            
+            </form>
+            <!-- КІНЕЦЬ НОВОЇ ФУНКЦІОНАЛЬНОЇ ФОРМИ -->
+
             <p class="text-sm text-gray-400 mt-6" data-i18n="footer_text">
                 ТОВ "Промбудспортіндустрія", Україна. Обслуговуємо європейських B2B клієнтів.
             </p>
@@ -489,8 +555,22 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Switching and Mobile Menu (Переклади) -->
+    <!-- Кастомне Модальне Вікно (для заміни alert()) -->
+    <div id="messageModal" class="modal-overlay">
+        <div class="modal-content">
+            <h4 id="modalTitle" class="text-2xl font-bold mb-4">Повідомлення</h4>
+            <p id="modalMessage" class="text-gray-300 mb-6"></p>
+            <button id="modalCloseButton" class="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-white font-semibold transition duration-300">Закрити</button>
+        </div>
+    </div>
+
+
+    <!-- JavaScript for Language Switching, Mobile Menu, and Form Handling -->
     <script>
+        // *** КОНФІГУРАЦІЯ FORMSPREE: ЗАМІНІТЬ 'YOUR_UNIQUE_CODE' НА ВАШ КЛЮЧ ***
+        // Отримайте цей ключ після створення форми на сайті Formspree.
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xrbnklpz"; 
+        
         const translations = {
             'uk': {
                 'title': 'ПРОМБУДСПОРТІНДУСТРІЯ: Виробництво, Експорт Дерев\'яних Піддонів на Замовлення (ISPM 15, FSC)',
@@ -501,9 +581,9 @@
                 'nav_process': 'Процес', 
                 'nav_whyus': 'Чому Ми',
                 'nav_contact': 'Контакти',
-                'hero_tagline': 'B2B Виробництво Дерев\'яних Піддонів', // ЗМІНЕНО
-                'hero_heading': 'Дерев\'яні Піддони для Бізнесу <br class="hidden sm:inline"> Якість, Перевірена Часом', // ЗМІНЕНО
-                'hero_text': 'Ми — надійний український виробник, що спеціалізується на виготовленні дерев\'яних піддонів та палет за індивідуальними кресленнями. Гарантуємо якість та експортну готовність натуральної деревини.', // ЗМІНЕНО
+                'hero_tagline': 'B2B Виробництво Дерев\'яних Піддонів', 
+                'hero_heading': 'Дерев\'яні Піддони для Бізнесу <br class="hidden sm:inline"> Якість, Перевірена Часом', 
+                'hero_text': 'Ми — надійний український виробник, що спеціалізується на виготовленні дерев\'яних піддонів та палет за індивідуальними кресленнями. Гарантуємо якість та експортну готовність натуральної деревини.', 
                 'hero_button': 'Надішліть Ваші Креслення Зараз',
                 'sect_title_spec': 'Наша Спеціалізація у Виробництві Піддонів', 
                 'serv1_title': 'Будь-який Розмір, Будь-який Дизайн',
@@ -513,7 +593,7 @@
                 'serv3_title': 'Відповідність ISPM 15',
                 'serv3_text': 'Вся дерев\'яна продукція проходить термообробку (HT) та сертифікована з маркуванням ISPM 15 для безперешкодного міжнародного експорту.',
                 
-                'sect_title_process': 'Наш Процес: Від Креслення до Готового Продукту', // ЗМІНЕНО
+                'sect_title_process': 'Наш Процес: Від Креслення до Готового Продукту', 
                 'proc1_title': 'Узгодження Креслень та Умов',
                 'proc1_text': 'Ви надсилаєте нам технічні креслення, ми обговорюємо специфікації, породу деревини, обсяг та ціну. Це займає 1 день.',
                 'proc1_time': 'Термін: 1 день',
@@ -534,11 +614,16 @@
                 'adv3_title': 'Висока Місячна Потужність',
                 'adv3_text': 'Готові забезпечувати довгострокові замовлення з надійною обсягом постачання.',
                 'sect_title_contact': 'Розпочніть Ваше Замовлення',
-                'contact_text': 'Бажаєте забезпечити постачання піддонів на замовлення? Зв\'яжіться безпосередньо з нашим Керівником відділу продажів.',
-                'contact_person_role_pre': 'Керівник відділу продажів:',
+                'contact_text': 'Бажаєте забезпечити постачання піддонів на замовлення? Надішліть нам запит на розрахунок!',
                 'footer_text': 'ТОВ "Промбудспортіндустрія", Україна. Обслуговуємо європейських B2B клієнтів.',
                 'copyright': 'Всі Права Захищені.',
-                'select_language': 'Оберіть мову:'
+                'select_language': 'Оберіть мову:',
+                'form_button': 'Надіслати Запит на Розрахунок',
+                'modal_success_title': 'Успішно Надіслано!',
+                'modal_success_message': 'Ваш запит отримано. Ми зв\'яжемося з Вами протягом 24 годин для обговорення деталей та прорахунку.',
+                'modal_error_title': 'Помилка Надсилання',
+                'modal_error_message': 'Виникла помилка під час надсилання запиту. Будь ласка, спробуйте ще раз або зв\'яжіться з нами за email/телефоном.',
+                'modal_close': 'Закрити'
             },
             'en': { 
                 'title': 'PROMBUDSPORTINDUSTRIYA: Custom Pallet Manufacturing & Export (ISPM 15, FSC)',
@@ -549,9 +634,9 @@
                 'nav_process': 'Process', 
                 'nav_whyus': 'Why Us',
                 'nav_contact': 'Contact',
-                'hero_tagline': 'B2B Wooden Pallet Manufacturing', // ЗМІНЕНО
-                'hero_heading': 'Wooden Pallets for Business <br class="hidden sm:inline"> Quality, Tested by Time', // ЗМІНЕНО
-                'hero_text': 'We are a reliable Ukrainian manufacturer specializing in custom wooden pallets and bespoke pallet solutions based on your drawings. We guarantee the quality and export readiness of natural wood.', // ЗМІНЕНО
+                'hero_tagline': 'B2B Wooden Pallet Manufacturing', 
+                'hero_heading': 'Wooden Pallets for Business <br class="hidden sm:inline"> Quality, Tested by Time', 
+                'hero_text': 'We are a reliable Ukrainian manufacturer specializing in custom wooden pallets and bespoke pallet solutions based on your drawings. We guarantee the quality and export readiness of natural wood.', 
                 'hero_button': 'Send Your Drawings Now',
                 'sect_title_spec': 'Our Pallet Manufacturing Specialization', 
                 'serv1_title': 'Any Size, Any Design',
@@ -561,7 +646,7 @@
                 'serv3_title': 'ISPM 15 Compliant',
                 'serv3_text': 'All wooden products are heat-treated (HT) and certified with ISPM 15 markings for smooth international export.',
 
-                'sect_title_process': 'Our Process: From Drawing to Finished Product', // ЗМІНЕНО
+                'sect_title_process': 'Our Process: From Drawing to Finished Product', 
                 'proc1_title': 'Drawing & Terms Confirmation',
                 'proc1_text': 'You send us the technical drawings, and we discuss specifications, wood type, volume, and pricing. This takes 1 day.',
                 'proc1_time': 'Timeframe: 1 Day',
@@ -582,11 +667,16 @@
                 'adv3_title': 'High Monthly Capacity',
                 'adv3_text': 'Ready to secure long-term orders with a reliable supply volume.',
                 'sect_title_contact': 'Start Your Order',
-                'contact_text': 'Ready to secure your custom pallet supply? Contact our Head of Sales directly.',
-                'contact_person_role_pre': 'Head of Sales:',
+                'contact_text': 'Ready to secure your custom pallet supply? Send us a quote request!',
                 'footer_text': 'TOV "Prombudsportindustriya", Ukraine. Serving European B2B clients.',
                 'copyright': 'All Rights Reserved.',
-                'select_language': 'Select language:'
+                'select_language': 'Select language:',
+                'form_button': 'Submit Quote Request',
+                'modal_success_title': 'Successfully Sent!',
+                'modal_success_message': 'Your request has been received. We will contact you within 24 hours to discuss details and provide a quote.',
+                'modal_error_title': 'Submission Error',
+                'modal_error_message': 'An error occurred while submitting your request. Please try again or contact us via email/phone.',
+                'modal_close': 'Close'
             }, 
             'de': {
                 'title': 'PROMBUDSPORTINDUSTRIYA: Hersteller von Paletten nach Maß & Export (ISPM 15, FSC)',
@@ -597,9 +687,9 @@
                 'nav_process': 'Prozess', 
                 'nav_whyus': 'Warum Wir',
                 'nav_contact': 'Kontakt',
-                'hero_tagline': 'B2B Holzpalettenherstellung', // ЗМІНЕНО
-                'hero_heading': 'Holzpaletten für Ihr Geschäft <br class="hidden sm:inline"> Qualität, Die Sich Bewährt Hat', // ЗМІНЕНО
-                'hero_text': 'Wir sind ein zuverlässiger ukrainischer Hersteller, der sich auf die Herstellung von Holzpaletten und maßgeschneiderten Palettenlösungen nach Ihren Zeichnungen spezialisiert hat. Wir garantieren die Qualität und Exportbereitschaft von Naturholz.', // ЗМІНЕНО
+                'hero_tagline': 'B2B Holzpalettenherstellung', 
+                'hero_heading': 'Holzpaletten für Ihr Geschäft <br class="hidden sm:inline"> Qualität, Die Sich Bewährt Hat', 
+                'hero_text': 'Wir sind ein zuverlässiger ukrainischer Hersteller, der sich auf die Herstellung von Holzpaletten und maßgeschneiderten Palettenlösungen nach Ihren Zeichnungen spezialisiert hat. Wir garantieren die Qualität und Exportbereitschaft von Naturholz.', 
                 'hero_button': 'Senden Sie Jetzt Ihre Zeichnungen',
                 'sect_title_spec': 'Unsere Paletten-Herstellungsspezialisierung', 
                 'serv1_title': 'Jede Größe, Jedes Design',
@@ -609,7 +699,7 @@
                 'serv3_title': 'ISPM 15 Konform',
                 'serv3_text': 'Alle Holzprodukte sind wärmebehandelt (HT) und mit der ISPM 15 Markierung für einen reibungslosen internationalen Export zertifiziert.',
 
-                'sect_title_process': 'Unser Prozess: Von der Zeichnung zum Fertigprodukt', // ЗМІНЕНО
+                'sect_title_process': 'Unser Prozess: Von der Zeichnung zum Fertigprodukt', 
                 'proc1_title': 'Zeichnung und Bedingungen Bestätigen',
                 'proc1_text': 'Sie senden uns die technischen Zeichnungen, und wir besprechen Spezifikationen, Holzart, Volumen und Preis. Dies dauert 1 Tag.',
                 'proc1_time': 'Zeitrahmen: 1 Tag',
@@ -630,11 +720,16 @@
                 'adv3_title': 'Hohe Monatliche Kapazität',
                 'adv3_text': 'Bereit, langfristige Aufträge mit einem zuverlässigen Liefervolumen zu sichern.',
                 'sect_title_contact': 'Starten Sie Ihre Bestellung',
-                'contact_text': 'Bereit, Ihre maßgeschneiderte Palettenlieferung zu sichern? Kontaktieren Sie unseren Vertriebsleiter direkt.',
-                'contact_person_role_pre': 'Vertriebsleiter:',
+                'contact_text': 'Bereit, Ihre maßgeschneiderte Palettenlieferung zu sichern? Senden Sie uns eine Angebotsanfrage!',
                 'footer_text': 'GMBH "Prombudsportindustriya", Ukraine. Wir bedienen europäische B2B-Kunden.',
                 'copyright': 'Alle Rechte vorbehalten.',
-                'select_language': 'Sprache auswählen:'
+                'select_language': 'Sprache auswählen:',
+                'form_button': 'Angebot Anfordern',
+                'modal_success_title': 'Erfolgreich Gesendet!',
+                'modal_success_message': 'Ihre Anfrage wurde empfangen. Wir werden Sie innerhalb von 24 Stunden kontaktieren, um Details zu besprechen und ein Angebot zu erstellen.',
+                'modal_error_title': 'Übermittlungsfehler',
+                'modal_error_message': 'Beim Senden Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per E-Mail/Telefon.',
+                'modal_close': 'Schließen'
             },
             'pl': { 
                 'title': 'PROMBUDSPORTINDUSTRIYA: Produkcja i Eksport Palet na Zamówienie (ISPM 15, FSC)',
@@ -645,9 +740,9 @@
                 'nav_process': 'Proces', 
                 'nav_whyus': 'Dlaczego My',
                 'nav_contact': 'Kontakt',
-                'hero_tagline': 'B2B Produkcja Palet Drewnianych', // ЗМІНЕНО
-                'hero_heading': 'Palety Drewniane dla Biznesu <br class="hidden sm:inline"> Jakość, Sprawdzona Czasem', // ЗМІНЕНО
-                'hero_text': 'Jesteśmy niezawodnym ukraińskim producentem, specjalizującym się w produkcji palet drewnianych i niestandardowych rozwiązań paletowych na podstawie Państwa rysunków. Gwarantujemy jakość i gotowość eksportową naturalnego drewna.', // ЗМІНЕНО
+                'hero_tagline': 'B2B Produkcja Palet Drewnianych', 
+                'hero_heading': 'Palety Drewniane dla Biznesu <br class="hidden sm:inline"> Jakość, Sprawdzona Czasem', 
+                'hero_text': 'Jesteśmy niezawodnym ukraińskim producentem, specjalizującym się w produkcji palet drewnianych i niestandardowych rozwiązań paletowych na podstawie Państwa rysunków. Gwarantujemy jakość i gotowość eksportową naturalnego drewna.', 
                 'hero_button': 'Wyślij Swoje Rysunki Teraz',
                 'sect_title_spec': 'Nasza Specjalizacja w Produkcji Palet', 
                 'serv1_title': 'Dowolny Rozmiar, Dowolny Projekt',
@@ -657,7 +752,7 @@
                 'serv3_title': 'Zgodność z ISPM 15',
                 'serv3_text': 'Wszystkie produkty drewniane są poddawane obróbce cieplnej (HT) i posiadają certyfikat z oznaczeniem ISPM 15 dla sprawnego eksportu międzynarodowego.',
 
-                'sect_title_process': 'Nasz Proces: Od Rysunku do Gotowego Produktu', // ЗМІНЕНО
+                'sect_title_process': 'Nasz Proces: Od Rysunku do Gotowego Produktu', 
                 'proc1_title': 'Potwierдzenie Rysunku i Warunków',
                 'proc1_text': 'Przesyłają нам Państwo rysunki techniczne, a my omawiamy specyfikacje, rodzaj drewna, wolumen i cenę. Zajmuje to 1 день.',
                 'proc1_time': 'Termin: 1 день',
@@ -672,17 +767,22 @@
                 'adv4_title': 'Ponad 20 Lat Doświadczenia', 
                 'adv4_text': 'Nasze wieloletnie doświadczenie gwarantuje nienaganną jakość produkcji i niezawodność przy każdym zamówieniu.', 
                 'adv1_title': 'Szybki Załadunek',
-                'adv1_text': 'Zapewniamy szybki i profesjonalny załadunek oraz zabezpieczenie palet w zaledwie 1 dzień.',
+                'adv1_text': 'Zapewniamy szybki i profesjonalny załadunek oraz zabezpieczenie palet w zaledwie 1 день.',
                 'adv2_title': 'Samodzielna Odprawa Celna',
                 'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łańцуг dostaw.',
                 'adv3_title': 'Wysoka Miesięчна Zдолність',
                 'adv3_text': 'Gotowi zabezpieczać długoterminowe zamówленна о niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoє Zamówienie',
-                'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówлення? Skontaktuj się bezpośredньо з нашим Kierownikiem Sprzedaży.',
-                'contact_person_role_pre': 'Kierownik Sprzedaży:',
+                'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówлення? Senden Sie uns eine Angebotsanfrage!',
                 'footer_text': 'Sp. z o.o. "Prombudsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
                 'copyright': 'Wszelkie Prawa Zastrzeжені.',
-                'select_language': 'Wybierz język:'
+                'select_language': 'Wybierz język:',
+                'form_button': 'Prześlij prośbę o wycenę',
+                'modal_success_title': 'Wysłano Pomyślnie!',
+                'modal_success_message': 'Otrzymaliśmy Państwa prośbę. Skontaktujemy się z Państwem w ciągu 24 godzin w celu omówienia szczegółów i przygotowania wyceny.',
+                'modal_error_title': 'Błąd Wysłania',
+                'modal_error_message': 'Wystąpił błąd podczas wysyłania Państwa prośby. Proszę spróbować ponownie lub skontaktować się z nami mailowo/telefonicznie.',
+                'modal_close': 'Zamknij'
             }
         };
 
@@ -690,6 +790,11 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const contactForm = document.getElementById('contactForm');
+        const messageModal = document.getElementById('messageModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalCloseButton = document.getElementById('modalCloseButton');
         
         // Helper function to update active state for all language buttons
         function updateLangButtonState(lang) {
@@ -720,22 +825,43 @@
                         element.setAttribute('content', translations[lang]['og_title']);
                     } else if (element.tagName === 'META' && element.getAttribute('property') === 'og:description') {
                         element.setAttribute('content', translations[lang]['meta_description']);
+                    } else if (element.id === 'contactName' || element.id === 'contactCompany' || element.id === 'contactEmail' || element.id === 'contactPhone' || element.id === 'contactDetails') {
+                        // Оновлення placeholder для полів форми
+                        const placeholders = {
+                            'contactName': { uk: "Ваше Ім'я (обов'язково)", en: "Your Name (required)", de: "Ihr Name (erforderlich)", pl: "Twoje Imię (wymagane)" },
+                            'contactCompany': { uk: "Назва Компанії", en: "Company Name", de: "Firmenname", pl: "Nazwa Firmy" },
+                            'contactEmail': { uk: "Email (обов'язково)", en: "Email (required)", de: "Email (erforderlich)", pl: "Email (wymagany)" },
+                            'contactPhone': { uk: "Телефон", en: "Phone", de: "Telefon", pl: "Telefon" },
+                            'contactDetails': { uk: "Специфікації піддонів (розмір, кількість, порода деревини, посилання на креслення)", en: "Pallet specifications (size, quantity, wood type, drawing link)", de: "Palettenspezifikationen (Größe, Menge, Holzart, Zeichnungslink)", pl: "Specyfikacje palet (rozmiar, ilość, rodzaj drewna, link do rysunku)" }
+                        };
+                        element.setAttribute('placeholder', placeholders[element.id][lang] || placeholders[element.id]['uk']);
                     } else {
                         // For other elements, use innerHTML as 'hero_heading' contains <br>
                         element.innerHTML = translations[lang][key]; 
                     }
                 }
             });
+            
+            // Оновлення тексту кнопки модального вікна
+            modalCloseButton.textContent = translations[lang]['modal_close'];
 
             // Update active button state globally
             updateLangButtonState(lang);
+        }
+        
+        // Функція для відображення кастомного модального вікна
+        function showModal(isSuccess, titleKey, messageKey) {
+            const lang = currentLang;
+            modalTitle.textContent = translations[lang][titleKey];
+            modalMessage.textContent = translations[lang][messageKey];
+            messageModal.style.display = 'flex';
         }
 
         // --- Mobile Menu Logic ---
         function toggleMobileMenu() {
             mobileMenu.classList.toggle('open');
             // Toggle body scroll lock
-            document.body.classList.toggle('overflow-hidden'); 
+            document.body.classList.remove('overflow-hidden'); 
         }
 
         // Close mobile menu and scroll to section on link click
@@ -745,7 +871,74 @@
                 document.body.classList.remove('overflow-hidden');
             });
         });
+
+        // --- Form Submission Logic (Formspree Integration) ---
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                // 1. Проста валідація (додаткові перевірки забезпечуються атрибутом 'required')
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+
+                if (!name || !email) {
+                    showModal(false, 'modal_error_title', 'modal_error_message');
+                    return;
+                }
+                
+                // 2. Збір даних для Formspree
+                const formData = {
+                    name: name,
+                    company: document.getElementById('contactCompany').value.trim(),
+                    _replyto: email, // Formspree використовує _replyto, щоб ви могли відповісти
+                    phone: document.getElementById('contactPhone').value.trim(),
+                    details: document.getElementById('contactDetails').value.trim()
+                };
+
+                // 3. Відправлення даних через AJAX до Formspree
+                try {
+                    const response = await fetch(FORMSPREE_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        // 4. Успіх
+                        showModal(true, 'modal_success_title', 'modal_success_message');
+                        contactForm.reset(); // Очищення форми
+                    } else {
+                        // 4. Помилка на стороні Formspree
+                        const data = await response.json();
+                        console.error("Formspree Error:", data);
+                        showModal(false, 'modal_error_title', 'modal_error_message');
+                    }
+                } catch (error) {
+                    // 4. Помилка мережі/запиту
+                    console.error("Submission failed:", error);
+                    showModal(false, 'modal_error_title', 'modal_error_message');
+                }
+            });
+        }
         
+        // --- Modal Close Logic ---
+        if (modalCloseButton) {
+            modalCloseButton.addEventListener('click', () => {
+                messageModal.style.display = 'none';
+            });
+        }
+        if (messageModal) {
+             messageModal.addEventListener('click', (e) => {
+                 if (e.target === messageModal) {
+                     messageModal.style.display = 'none';
+                 }
+             });
+        }
+
+
         // Initialize listeners and set initial state
         document.addEventListener('DOMContentLoaded', () => {
             // Set up event listeners for mobile menu
