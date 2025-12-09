@@ -73,22 +73,45 @@
             overflow-x: hidden;
         }
 
+        /* --- Header Fix (Зробимо шапку "липкою") --- */
+        #main-header {
+            transition: all 0.3s ease;
+        }
+        .header-scrolled {
+            background-color: rgba(17, 24, 39, 0.95); /* Gray-900 with slight transparency */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        /* --- Анімація зникнення/появи секцій (МАКСИМАЛЬНО ДИНАМІЧНА) --- */
+        .fade-in-section {
+            opacity: 0;
+            /* Збільшення зміщення та масштабу для помітнішого ефекту "виривання" */
+            transform: translateY(80px) scale(0.9); 
+            /* Використовуємо spring-like cubic-bezier для ефекту "відскоку" */
+            transition: opacity 0.8s ease-out, 
+                        transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
         /* --- ПОКРАЩЕНИЙ ПЕРЕМИКАЧ МОВИ (CAPSULE STYLE) --- */
         .lang-switcher-container {
-            padding: 4px; /* Більший внутрішній відступ для елегантності */
-            border-radius: 9999px; /* Повністю округла форма капсули */
+            padding: 4px; 
+            border-radius: 9999px; 
             border: 1px solid rgba(255, 255, 255, 0.15);
             background-color: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(8px);
-            /* Тонка внутрішня тінь для ефекту "втоплення" */
             box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4); 
         }
 
         .lang-button {
-            padding: 6px 14px; /* Симетричні відступи */
+            padding: 6px 14px; 
             font-size: 0.9rem;
             cursor: pointer; 
-            border-radius: 9999px; /* Кругла кнопка */
+            border-radius: 9999px; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             color: #cbd5e1; /* Gray-300 */
         }
@@ -96,7 +119,6 @@
             background-color: #10b981; /* Green-500 для вибору */
             color: #111827; /* Темний текст на активному фоні */
             font-weight: 700;
-            /* Зовнішня тінь + внутрішнє світіння для активного стану */
             box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.5);
         }
         .lang-button:not(.active):hover {
@@ -150,12 +172,12 @@
         
         /* Glassmorphism/iOS Style */
         .glass-card {
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Глибша тінь */
-            backdrop-filter: blur(12px); /* Більше розмиття */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+            backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
         }
         
-        /* СТИЛЬ CTA КНОПКИ (Без змін) */
+        /* СТИЛЬ CTA КНОПКИ */
         .cta-button {
             background-image: linear-gradient(145deg, #34d399, #047857);
             transition: all 0.3s ease-in-out; 
@@ -181,17 +203,14 @@
         
         /* Покращений Hover ефект для карток послуг (ЗЕЛЕНИЙ) */
         .glass-card-hover:hover {
-             /* Підйом та більш яскраве світіння */
-             transform: translateY(-5px);
-             /* Збільшена яскравість зеленого світіння та менше чорної тіні */
-             box-shadow: 0 0 40px 0 rgba(5, 150, 105, 0.7), 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px 0 rgba(5, 150, 105, 0.7), 0 8px 16px 0 rgba(0, 0, 0, 0.3);
         }
 
         /* Жовтий Hover ефект для картки Досвіду */
         .highlight-card-hover:hover {
-             transform: translateY(-5px);
-             /* Жовте світіння (Yellow-400 / #FACC15) */
-             box-shadow: 0 0 40px 0 rgba(250, 204, 21, 0.5), 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px 0 rgba(250, 204, 21, 0.5), 0 8px 16px 0 rgba(0, 0, 0, 0.3);
         }
 
         .process-arrow {
@@ -200,22 +219,6 @@
             font-weight: 900;
         }
 
-        /* 2. Стиль для H1 Hero (повернуто до оригінального) */
-        .hero-heading-pop {
-             /* Видалено зайву тінь */
-             text-shadow: none;
-        }
-
-        /* 3. Стиль для Навігаційних Посилань (повернуто до оригінального) */
-        .nav-link {
-            transition: color 0.3s;
-        }
-        .nav-link:hover {
-            color: #34d399 !important;
-            text-shadow: none; /* Видалено світіння */
-        }
-
-        /* Стиль для форми */
         .form-input {
             width: 100%;
             padding: 12px 16px;
@@ -252,11 +255,26 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* --- Стиль для кнопки Scroll-to-Top --- */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+        }
+        #scrollToTopBtn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="text-gray-100">
 
-    <header class="bg-transparent text-white shadow-none absolute w-full top-0 z-30">
+    <header id="main-header" class="bg-transparent text-white shadow-none fixed w-full top-0 z-30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <p class="text-xl sm:text-2xl font-bold tracking-tight truncate max-w-[60%]" data-i18n="header_title">ТОВ ПРОМБУДСПОРТІНДУСТРІЯ</p>
             
@@ -270,11 +288,10 @@
                 </div>
 
                 <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                    <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ -->
-                    <a href="#services" class="hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
-                    <a href="#process" class="hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> 
-                    <a href="#advantages" class="hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
-                    <a href="#contact" class="hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
+                    <a href="#services" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
+                    <a href="#process" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> 
+                    <a href="#advantages" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
+                    <a href="#contact" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
                 </nav>
 
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-white/20 transition duration-300 z-40">
@@ -313,7 +330,7 @@
     </div>
 
 
-    <section id="hero-section" class="hero-bg min-h-screen flex items-center justify-center py-24 md:py-32 relative z-10">
+    <section id="hero-section" class="hero-bg min-h-screen flex items-center justify-center py-24 md:py-32 relative z-10 fade-in-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
             <div class="bg-gray-900/60 p-6 md:p-12 rounded-3xl shadow-2xl max-w-4xl mx-auto border border-white/10 text-white glass-card"> 
                 <p class="text-lg font-semibold text-green-400 mb-2 uppercase tracking-wider" data-i18n="hero_tagline">B2B Виробництво Дерев'яних Піддонів</p>
@@ -345,7 +362,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 md:py-20 bg-gray-900">
+    <section id="services" class="py-16 md:py-20 bg-gray-900 fade-in-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ H2 -->
             <h2 class="text-3xl font-bold text-white mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_spec">
@@ -384,7 +401,7 @@
     </section>
 
     <!-- НОВА СЕКЦІЯ: Процес (ЗІ СТРІЛКАМИ) -->
-    <section id="process" class="py-16 md:py-20 bg-gray-900">
+    <section id="process" class="py-16 md:py-20 bg-gray-900 fade-in-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ H2 -->
             <h2 class="text-3xl font-bold text-white mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_process">
@@ -434,7 +451,7 @@
     </section>
 
     <!-- Logistics Advantages Section -->
-    <section id="advantages" class="py-16 md:py-20 bg-gray-800">
+    <section id="advantages" class="py-16 md:py-20 bg-gray-800 fade-in-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ H2 -->
             <h2 class="text-3xl font-bold text-white mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_logist">
@@ -503,7 +520,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-20 bg-gray-900">
+    <section id="contact" class="py-16 md:py-20 bg-gray-900 fade-in-section">
         <!-- ДОДАНО: class="glass-card" для посилення ефекту Glassmorphism -->
         <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gray-800 p-8 rounded-3xl shadow-2xl border-t-4 border-green-500 text-white glass-card">
             <h3 class="text-3xl font-bold text-white mb-6" data-i18n="sect_title_contact">Розпочніть Ваше Замовлення</h3>
@@ -530,15 +547,15 @@
                 <textarea id="contactDetails" name="details" rows="4" data-i18n-ph="ph_details" placeholder="Специфікації піддонів (розмір, кількість, порода деревини, посилання на креслення)" required class="form-input"></textarea>
 
                 <!-- Кнопка Надсилання -->
-                <button type="submit" class="w-full inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white shadow-lg transform hover:scale-105 cta-button mt-6" data-i18n="form_button">
+                <button type="submit" id="submitButton" class="w-full inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white shadow-lg transform hover:scale-105 cta-button mt-6" data-i18n="form_button">
                     Надіслати Запит на Розрахунок
                 </button>
 
                 <!-- Статичні контакти, якщо форма не є пріоритетом (ЗМЕНШЕНО) -->
                 <p class="text-center text-sm text-gray-400 pt-4">Або зв'яжіться безпосередньо:</p>
                 <div class="flex justify-center space-x-6 text-sm">
-                     <a href="mailto:tovpbsi@gmail.com" class="hover:text-green-400 hover:underline">📧 tovpbsi@gmail.com</a>
-                     <a href="tel:+380503516943" class="hover:text-green-400 hover:underline">📞 +38 050 351 6943</a>
+                    <a href="mailto:tovpbsi@gmail.com" class="hover:text-green-400 hover:underline">📧 tovpbsi@gmail.com</a>
+                    <a href="tel:+380503516943" class="hover:text-green-400 hover:underline">📞 +38 050 351 6943</a>
                 </div>
             </form>
             <!-- КІНЕЦЬ НОВОЇ ФУНКЦІОНАЛЬНОЇ ФОРМИ -->
@@ -564,12 +581,18 @@
             <button id="modalCloseButton" class="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-white font-semibold transition duration-300">Закрити</button>
         </div>
     </div>
+    
+    <!-- Кнопка Scroll-to-Top (НОВА) -->
+    <button id="scrollToTopBtn" class="bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
 
 
     <!-- JavaScript for Language Switching, Mobile Menu, and Form Handling -->
     <script>
         // *** КОНФІГУРАЦІЯ FORMSPREE: ЗАМІНІТЬ 'YOUR_UNIQUE_CODE' НА ВАШ КЛЮЧ ***
-        // Отримайте цей ключ після створення форми на сайті Formspree.
         const FORMSPREE_ENDPOINT = "https://formspree.io/f/xrbnklpz"; 
         
         const translations = {
@@ -620,6 +643,7 @@
                 'copyright': 'Всі Права Захищені.',
                 'select_language': 'Оберіть мову:',
                 'form_button': 'Надіслати Запит на Розрахунок',
+                'form_button_sending': 'Надсилання...',
                 'modal_success_title': 'Успішно Надіслано!',
                 'modal_success_message': 'Ваш запит отримано. Ми зв\'яжемося з Вами протягом 24 годин для обговорення деталей та прорахунку.',
                 'modal_error_title': 'Помилка Надсилання',
@@ -679,6 +703,7 @@
                 'copyright': 'All Rights Reserved.',
                 'select_language': 'Select language:',
                 'form_button': 'Submit Quote Request',
+                'form_button_sending': 'Sending...',
                 'modal_success_title': 'Successfully Sent!',
                 'modal_success_message': 'Your request has been received. We will contact you within 24 hours to discuss details and provide a quote.',
                 'modal_error_title': 'Submission Error',
@@ -738,6 +763,7 @@
                 'copyright': 'Alle Rechte vorbehalten.',
                 'select_language': 'Sprache auswählen:',
                 'form_button': 'Angebot Anfordern',
+                'form_button_sending': 'Senden...',
                 'modal_success_title': 'Erfolgreich Gesendet!',
                 'modal_success_message': 'Ihre Anfrage wurde empfangen. Wir werden Sie innerhalb von 24 Stunden kontaktieren, um Details zu besprechen und ein Angebot zu erstellen.',
                 'modal_error_title': 'Übermittlungsfehler',
@@ -782,23 +808,24 @@
                 'proc3_text': 'Samodzielnie zajmujemy się dokumentacją celną. Szybki i profesjonalny załadunek towaru do Państwa transportu.',
                 'proc3_time': 'Termin: 1 день',
 
-                'sect_title_logist': 'Twoja Przewaga B2B: Бездоганна Логістика', 
-                'adv4_title': 'Ponad 20 Lat Doświadczenia', 
+                'sect_title_logist': 'Twoja Przewaga B2B: Бездосконała Logistyka', 
+                'adv4_title': 'Ponad 20 Lat Doświadчення', 
                 'adv4_text': 'Nasze wieloletnie doświadczenie gwarantuje nienaganną jakość produkcji i niezawodność przy każdym zamówieniu.', 
                 'adv1_title': 'Szybki Załadunek',
                 'adv1_text': 'Zapewniamy szybki i profesjonalny załadunek oraz zabezpieczenie palet w zaledwie 1 день.',
                 'adv2_title': 'Samodzielna Odprawa Celna',
                 'adv2_text': 'Samodzielnie zarządzamy całą dokumentacją i procedurami celnymi eksportu, upraszczając Państwa łaцуг dostaw.',
-                'adv3_title': 'Wysoka Miesięчна Zдолність',
-                'adv3_text': 'Gotowi zabezpieczać długoterminowe zamówленна о niezawodnej wielkości dostaw.',
-                'sect_title_contact': 'Rozpocznij Swoє Zamówienie',
-                'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówлення? Senden Sie uns eine Angebotsanfrage!',
-                'footer_text': 'Sp. z o.o. "Prombudsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
+                'adv3_title': 'Wysoka Miesięчна Zdolność',
+                'adv3_text': 'Gotowi zabezpieczać długoterminowe zamówления о niezawodnej wielkości dostaw.',
+                'sect_title_contact': 'Rozpocznij Swoje Zamówienie',
+                'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówленнє? Wyślij нам prośbę o wyцену!',
+                'footer_text': 'Sp. z o.o. "Prombudsportindustriya", Ukraina. Obsługujemy europejskich klientів B2B.',
                 'copyright': 'Wszelkie Prawa Zastrzeжені.',
                 'select_language': 'Wybierz język:',
-                'form_button': 'Prześlij prośbę o wycenę',
+                'form_button': 'Prześlij prośbę o wyцену',
+                'form_button_sending': 'Wysyłanie...',
                 'modal_success_title': 'Wysłano Pomyślnie!',
-                'modal_success_message': 'Otrzymaliśmy Państwa prośbę. Skontaktujemy się z Państwem w ciągu 24 godzin w celu omówienia szczegółów i przygotowania wyceny.',
+                'modal_success_message': 'Otrzymaliśmy Państwa prośbę. Skontaktujemy się z Państwem w ciągu 24 godzin w celu omówienia szczegółów i przygotowania wyцены.',
                 'modal_error_title': 'Błąd Wysłania',
                 'modal_error_message': 'Wystąpił błąd podczas wysyłania Państwa prośby. Proszę spróbować ponownie lub skontaktować się z nami mailowo/telefonicznie.',
                 'modal_close': 'Zamknij',
@@ -812,14 +839,17 @@
         };
 
         let currentLang = 'uk';
+        const mainHeader = document.getElementById('main-header');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenuClose = document.getElementById('mobile-menu-close');
         const contactForm = document.getElementById('contactForm');
+        const submitButton = document.getElementById('submitButton'); // Нова змінна
         const messageModal = document.getElementById('messageModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalMessage = document.getElementById('modalMessage');
         const modalCloseButton = document.getElementById('modalCloseButton');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn'); // Нова змінна
         
         // Helper function to update active state for all language buttons
         function updateLangButtonState(lang) {
@@ -876,6 +906,12 @@
             
             // Оновлення тексту кнопки модального вікна
             modalCloseButton.textContent = translations[lang]['modal_close'];
+            
+            // Оновлення тексту кнопки відправки форми (на випадок, якщо вона була в стані 'Надсилання...')
+            if (!contactForm.isSubmitting) {
+                submitButton.textContent = translations[lang]['form_button'];
+            }
+
 
             // Update active button state globally
             updateLangButtonState(lang);
@@ -892,29 +928,41 @@
         // --- Mobile Menu Logic ---
         function toggleMobileMenu() {
             mobileMenu.classList.toggle('open');
-            // Toggle body scroll lock
-            document.body.classList.remove('overflow-hidden'); 
+            // Toggle body scroll lock (залишимо його в CSS для простоти)
         }
 
         // Close mobile menu and scroll to section on link click
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
-                document.body.classList.remove('overflow-hidden');
             });
         });
-
+        
         // --- Form Submission Logic (Formspree Integration) ---
-        if (contactForm) {
+        if (contactForm && submitButton) {
+            contactForm.isSubmitting = false; // Додаємо стан для запобігання подвійному кліку
+
             contactForm.addEventListener('submit', async function(event) {
                 event.preventDefault();
 
-                // 1. Проста валідація (додаткові перевірки забезпечуються атрибутом 'required')
+                if (contactForm.isSubmitting) return; // Запобігання подвійному кліку
+
+                // 1. Встановлення стану завантаження
+                contactForm.isSubmitting = true;
+                submitButton.textContent = translations[currentLang]['form_button_sending'];
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-70', 'cursor-not-allowed');
+
                 const name = document.getElementById('contactName').value.trim();
                 const email = document.getElementById('contactEmail').value.trim();
 
                 if (!name || !email) {
                     showModal(false, 'modal_error_title', 'modal_error_message');
+                    // Скидання стану після невдалої валідації
+                    contactForm.isSubmitting = false;
+                    submitButton.textContent = translations[currentLang]['form_button'];
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-70', 'cursor-not-allowed');
                     return;
                 }
                 
@@ -922,11 +970,11 @@
                 const formData = {
                     name: name,
                     company: document.getElementById('contactCompany').value.trim(),
-                    _replyto: email, // Formspree використовує _replyto, щоб ви могли відповісти
+                    _replyto: email, 
                     phone: document.getElementById('contactPhone').value.trim(),
                     details: document.getElementById('contactDetails').value.trim()
                 };
-
+                
                 // 3. Відправлення даних через AJAX до Formspree
                 try {
                     const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -941,7 +989,7 @@
                     if (response.ok) {
                         // 4. Успіх
                         showModal(true, 'modal_success_title', 'modal_success_message');
-                        contactForm.reset(); // Очищення форми
+                        contactForm.reset(); 
                     } else {
                         // 4. Помилка на стороні Formspree
                         const data = await response.json();
@@ -952,6 +1000,12 @@
                     // 4. Помилка мережі/запиту
                     console.error("Submission failed:", error);
                     showModal(false, 'modal_error_title', 'modal_error_message');
+                } finally {
+                    // 5. Завжди скидаємо стан завантаження
+                    contactForm.isSubmitting = false;
+                    submitButton.textContent = translations[currentLang]['form_button'];
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-70', 'cursor-not-allowed');
                 }
             });
         }
@@ -970,6 +1024,51 @@
              });
         }
 
+        // --- Sticky Header Logic and Scroll-to-Top Logic (НОВИЙ ФУНКЦІОНАЛ) ---
+        function handleScroll() {
+            const scrollPosition = window.scrollY;
+
+            // 1. Sticky Header Logic
+            if (scrollPosition > 50) {
+                mainHeader.classList.add('header-scrolled');
+            } else {
+                mainHeader.classList.remove('header-scrolled');
+            }
+
+            // 2. Scroll-to-Top Button Logic
+            if (scrollPosition > 400) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // --- Section Fade-In Animation Logic (НОВИЙ ФУНКЦІОНАЛ) ---
+        const sections = document.querySelectorAll('.fade-in-section');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Секція вважається видимою, коли 10% її видно
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Після показу можна відключити спостерігач для цієї секції
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
 
         // Initialize listeners and set initial state
         document.addEventListener('DOMContentLoaded', () => {
@@ -987,6 +1086,15 @@
 
             // Set the initial language (defaults to 'uk' defined in the HTML body)
             switchLanguage(currentLang); 
+            
+            // Set up scroll listeners
+            window.addEventListener('scroll', handleScroll);
+            scrollToTopBtn.addEventListener('click', scrollToTop);
+            
+            // Start observing sections for fade-in effect
+            sections.forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
 </body>
