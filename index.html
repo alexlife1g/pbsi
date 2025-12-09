@@ -91,9 +91,10 @@
         /* FIX: Повна непрозорість на мобільних пристроях, щоб гарантувати видимість фону */
         @media (max-width: 768px) {
             .header-scrolled {
-                /* Повний темний фон, коли прокручено, без прозорості */
-                background-color: #111827; 
-                backdrop-filter: none; /* Вимикаємо розмиття, якщо воно викликає проблеми */
+                /* Повний темний фон, коли прокручено */
+                background-color: #111827 !important; /* !important для гарантії, що він перезапише desktop rgba */
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+                backdrop-filter: none; /* Вимикаємо розмиття, щоб не конфліктувало */
             }
             #main-header {
                 /* Зберігаємо прозорість, коли користувач на самому верху */
@@ -839,7 +840,7 @@
                 'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówленнє? Wyślij нам prośbę o wyцену!',
                 'footer_text': 'Sp. z o.o. "Prombudsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
                 'copyright': 'Wszelkie Prawa Zastrzeжені.',
-                'select_language': 'Wybierz język:',
+                'select_language': 'Wybierz jęзик:',
                 'form_button': 'Prześlij prośbę o wyцену',
                 'form_button_sending': 'Wysyłanie...',
                 'modal_success_title': 'Wysłano Pomyślnie!',
