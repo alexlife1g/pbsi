@@ -76,11 +76,29 @@
         /* --- Header Fix (Зробимо шапку "липкою") --- */
         #main-header {
             transition: all 0.3s ease;
+            /* Додаємо z-index тут, щоб бути впевненими, що він завжди вище інших елементів */
+            position: fixed;
+            top: 0;
+            z-index: 30;
         }
         .header-scrolled {
-            background-color: rgba(17, 24, 39, 0.95); /* Gray-900 with slight transparency */
+            /* Базовий вигляд: напівпрозорий + розмиття для desktop */
+            background-color: rgba(17, 24, 39, 0.95); 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(8px);
+        }
+        
+        /* FIX: Повна непрозорість на мобільних пристроях, щоб гарантувати видимість фону */
+        @media (max-width: 768px) {
+            .header-scrolled {
+                /* Повний темний фон, коли прокручено, без прозорості */
+                background-color: #111827; 
+                backdrop-filter: none; /* Вимикаємо розмиття, якщо воно викликає проблеми */
+            }
+            #main-header {
+                /* Зберігаємо прозорість, коли користувач на самому верху */
+                background-color: transparent;
+            }
         }
 
         /* --- Анімація зникнення/появи секцій (МАКСИМАЛЬНО ДИНАМІЧНА) --- */
@@ -802,7 +820,7 @@
                 'proc1_text': 'Przesyłają нам Państwo rysunki techniczne, a my omawiamy specyfikacje, rodzaj drewna, wolumen i cenę. Zajmuje to 1 день.',
                 'proc1_time': 'Termin: 1 день',
                 'proc2_title': 'Produkcja i Obróbka Cieplna (HT)',
-                'proc2_text': 'Uruchomienie produkcji zgodnie ze standardami ISPM 15 i FSC. Ścisła kontrola jakości na każdym etapie.',
+                'proc2_text': 'Uruchomienie produkcji zgodnie ze standardami ISPM 15 i FSC. Ścisła kontrola jakości na każdym etтапі.',
                 'proc2_time': 'Termin: do 15 dni',
                 'proc3_title': 'Odprawa Celna i Załadunek',
                 'proc3_text': 'Samodzielnie zajmujemy się dokumentacją celną. Szybki i profesjonalny załadunek towaru do Państwa transportu.',
@@ -819,7 +837,7 @@
                 'adv3_text': 'Gotowi zabezpieczać długoterminowe zamówления о niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoje Zamówienie',
                 'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówленнє? Wyślij нам prośbę o wyцену!',
-                'footer_text': 'Sp. z o.o. "Prombudsportindustriya", Ukraina. Obsługujemy europejskich klientів B2B.',
+                'footer_text': 'Sp. z o.o. "Prombudsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
                 'copyright': 'Wszelkie Prawa Zastrzeжені.',
                 'select_language': 'Wybierz język:',
                 'form_button': 'Prześlij prośbę o wyцену',
