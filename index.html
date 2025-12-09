@@ -46,23 +46,57 @@
         }
       }
     </script>
+    
+    <!-- ДОДАНО: Structured Data Schema Markup для FAQPage (SEO) -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Виробництво дерев'яних піддонів на замовлення та експорт",
-        "description": "Надійний B2B виробник нестандартних дерев'яних палет з сертифікацією ISPM 15 та FSC.",
-        "serviceType": "Wooden Pallet Manufacturing and Export",
-        "provider": {
-          "@type": "Organization",
-          "name": "ТОВ ПРОМБУДСПОРТІНДУСТРІЯ"
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чи відповідають ваші піддони стандартам ISPM 15 для експорту?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Так, вся наша дерев'яна пакувальна продукція, призначена для експорту, проходить обов'язкову термообробку (HT) і має відповідне маркування ISPM 15 (IPPC)."
+          }
         },
-        "areaServed": {
-          "@type": "Country",
-          "name": "EU"
+        {
+          "@type": "Question",
+          "name": "Який мінімальний обсяг замовлення дерев'яних піддонів на замовлення?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ми спеціалізуємося на B2B замовленнях великого та середнього обсягу. Мінімальний обсяг обговорюється індивідуально, залежно від складності креслення, але типово починається від однієї повної партії (наприклад, 1000+ одиниць)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Який термін виготовлення нестандартного замовлення?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Стандартний цикл виробництва, включаючи узгодження креслень та термообробку, становить до 15 робочих днів."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи надаєте ви послуги митного оформлення для експорту?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Так, ми самостійно беремо на себе повне митне оформлення нашої продукції, що значно спрощує логістику для наших європейських партнерів."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Які породи деревини ви використовуєте для виробництва палет?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ми використовуємо якісну українську деревину, переважно сосну та інші хвойні породи, що забезпечує міцність та відповідність експортним вимогам."
+          }
         }
-      }
+      ]
+    }
     </script>
+    <!-- КІНЕЦЬ Schema Markup -->
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -76,7 +110,6 @@
         /* --- Header Fix (Зробимо шапку "липкою") --- */
         #main-header {
             transition: all 0.3s ease;
-            /* Додаємо z-index тут, щоб бути впевненими, що він завжди вище інших елементів */
             position: fixed;
             top: 0;
             z-index: 30;
@@ -101,7 +134,60 @@
                 background-color: transparent;
             }
         }
+        
+        /* --- Смуга прогресу прокручування (НОВА) --- */
+        #progressBar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: #10b981; /* Green-500 */
+            width: 0%;
+            transition: width 0.1s linear; /* Плавне оновлення */
+            z-index: 31; /* Над шапкою, але під мобільним меню */
+        }
+        
+        /* --- ОРИГІНАЛЬНА НАВІГАЦІЙНА ЛОГІКА (ПОВЕРНЕННЯ) --- */
+        
+        /* 1. Навігаційні посилання */
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: #cbd5e1; /* Gray-300 - базовий колір */
+            transition: color 0.3s, text-shadow 0.3s;
+        }
 
+        /* 2. Hover/Active effect: Плавний андерлайн та світіння */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; /* Розташування під текстом */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0; /* Початкова ширина */
+            height: 2px;
+            background-color: #10b981; /* Green-500 */
+            border-radius: 9999px;
+            box-shadow: 0 0 8px #10b981cc;
+            transition: width 0.3s ease-out;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active-nav::after {
+            width: 100%;
+        }
+
+        .nav-link.active-nav {
+            color: #10b981 !important; /* Green-500 */
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.9);
+        }
+        
         /* --- Анімація зникнення/появи секцій (МАКСИМАЛЬНО ДИНАМІЧНА) --- */
         .fade-in-section {
             opacity: 0;
@@ -115,6 +201,27 @@
             opacity: 1;
             transform: translateY(0) scale(1);
         }
+        
+        /* --- Анімація заголовка (1.1) --- */
+        @keyframes subtle-flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 0px #10b981; }
+            50% { opacity: 0.95; text-shadow: 0 0 5px #10b98140; } /* Легке світіння */
+        }
+        .dynamic-text {
+            /* Застосовуємо анімацію до ключових слів у Hero */
+            display: inline-block;
+            color: #10b981;
+            animation: subtle-flicker 4s infinite ease-in-out; 
+        }
+
+        /* --- Hover-ефект для зображень (1.2) --- */
+        .image-hover-zoom {
+            transition: transform 0.4s ease-in-out;
+        }
+        .image-container:hover .image-hover-zoom {
+            transform: scale(1.05);
+        }
+
 
         /* --- ПОКРАЩЕНИЙ ПЕРЕМИКАЧ МОВИ (CAPSULE STYLE) --- */
         .lang-switcher-container {
@@ -289,6 +396,64 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* --- НОВИЙ СТИЛЬ FAQ (З ВИПРАВЛЕНОЮ АНІМАЦІЄЮ: GRID) --- */
+        .faq-item {
+            /* Тепер це Grid контейнер */
+            display: grid;
+            grid-template-rows: auto 0fr; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* ВИПРАВЛЕНО: Додаємо transition для візуального підйому всього блоку */
+            transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s; 
+            border-radius: 12px;
+            overflow: hidden; 
+        }
+        .faq-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .faq-item.open {
+            /* Ефект "підйому" */
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+            /* Розкриваємо другий рядок на повну висоту вмісту */
+            grid-template-rows: auto 1fr; 
+        }
+
+        .faq-question {
+            cursor: pointer;
+            padding: 1rem 1.5rem; /* Збільшуємо padding для кращої зони кліку */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #d1d5db; /* Gray-300 */
+            transition: color 0.3s;
+        }
+        .faq-question:hover {
+            color: #10b981; /* Green-500 */
+        }
+        
+        .faq-answer {
+            grid-row: 2;
+            overflow: hidden;
+            /* ВИКОРИСТОВУЄМО GRID: grid-template-rows: 0fr -> 1fr */
+            transition: grid-template-rows 0.4s ease-in-out; 
+        }
+        
+        /* Вміст відповіді, який знаходиться всередині faq-answer */
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem 1.5rem; /* Відступи для вмісту */
+            color: #9ca3af; /* Gray-400 */
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            color: #34d399; /* Green-400 */
+        }
+        .faq-icon.rotate {
+            transform: rotate(45deg);
+        }
     </style>
 </head>
 <body class="text-gray-100">
@@ -306,11 +471,13 @@
                     <button class="lang-button" data-lang="pl">PL</button>
                 </div>
 
-                <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                    <a href="#services" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
-                    <a href="#process" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> 
-                    <a href="#advantages" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
-                    <a href="#contact" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
+                <!-- ПОВЕРНЕНО: ОРИГІНАЛЬНА НАВІГАЦІЯ (без капсули) -->
+                <nav class="hidden md:flex space-x-6 text-sm font-medium" id="desktop-nav-links">
+                    
+                    <a href="#services" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_services" data-section="services">Наші Послуги</a>
+                    <a href="#process" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_process" data-section="process">Процес</a> 
+                    <a href="#advantages" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_whyus" data-section="advantages">Чому Ми</a>
+                    <a href="#contact" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_contact" data-section="contact">Контакти</a>
                 </nav>
 
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-white/20 transition duration-300 z-40">
@@ -320,6 +487,8 @@
                 </button>
             </div>
         </div>
+        <!-- НОВА СМУГА ПРОГРЕСУ -->
+        <div id="progressBar"></div>
     </header>
 
     <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full bg-gray-800 text-white p-6 z-50 flex flex-col justify-start items-start translate-x-full">
@@ -331,11 +500,13 @@
             </button>
         </div>
 
-        <nav class="flex flex-col space-y-6 text-2xl font-semibold mb-10">
-            <a href="#services" class="hover:text-green-400 transition duration-300" data-i18n="nav_services">Наші Послуги</a>
-            <a href="#process" class="hover:text-green-400 transition duration-300" data-i18n="nav_process">Процес</a> 
-            <a href="#advantages" class="hover:text-green-400 transition duration-300" data-i18n="nav_whyus">Чому Ми</a>
-            <a href="#contact" class="hover:text-green-400 transition duration-300" data-i18n="nav_contact">Контакти</a>
+        <nav class="flex flex-col space-y-6 text-2xl font-semibold mb-10" id="mobile-nav-links">
+            <!-- ОНОВЛЕНО: Використовуємо оригінальні класи для мобільного меню -->
+            <a href="#services" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_services" data-section="services">Наші Послуги</a>
+            <a href="#process" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_process" data-section="process">Процес</a> 
+            <a href="#advantages" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_whyus" data-section="advantages">Чому Ми</a>
+            <a href="#contact" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_contact" data-section="contact">Контакти</a>
+            <a href="#faq" class="nav-link hover:text-green-400 transition duration-300" data-i18n="nav_faq" data-section="faq">FAQ</a> <!-- ПОВЕРНУТО FAQ -->
         </nav>
 
         <div class="text-lg font-medium mb-4" data-i18n="select_language">Оберіть мову:</div>
@@ -354,9 +525,9 @@
             <div class="bg-gray-900/60 p-6 md:p-12 rounded-3xl shadow-2xl max-w-4xl mx-auto border border-white/10 text-white glass-card"> 
                 <p class="text-lg font-semibold text-green-400 mb-2 uppercase tracking-wider" data-i18n="hero_tagline">B2B Виробництво Дерев'яних Піддонів</p>
                 
-                <!-- ПОВЕРНУТО ОРИГІНАЛЬНИЙ СТИЛЬ -->
+                <!-- ОНОВЛЕННЯ 1.1: Динамічний заголовок -->
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight" data-i18n="hero_heading">
-                    Дерев'яні Піддони для Бізнесу <br class="hidden sm:inline"> Якість, Перевірена Часом
+                    <span class="dynamic-text">Дерев'яні Піддони</span> для Бізнесу <br class="hidden sm:inline"> <span class="dynamic-text">Якість, Перевірена Часом</span>
                 </h1>
                 
                 <p class="text-base sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto" data-i18n="hero_text">
@@ -430,7 +601,7 @@
             <div class="flex flex-col lg:flex-row lg:justify-between lg:space-x-4 gap-6">
                 
                 <!-- Крок 1: Замовлення та Креслення -->
-                <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl border border-white/10 transition duration-300 glass-card-hover">
+                <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4 font-extrabold">1</div>
                     <h3 class="text-xl font-semibold mb-2 text-white" data-i18n="proc1_title">Узгодження Креслень та Умов</h3>
                     <p class="text-gray-300 text-sm" data-i18n="proc1_text">
@@ -446,7 +617,7 @@
                 <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4 font-extrabold">2</div>
                     <h3 class="text-xl font-semibold mb-2 text-white" data-i18n="proc2_title">Виготовлення та Термообробка (HT)</h3>
-                    <p class="text-gray-300 text-sm" data-i18n="proc2_text">
+                    <p class="text-gray-300" data-i18n="proc2_text">
                         Запуск виробництва відповідно до стандартів ISPM 15 та FSC. Суворий контроль якості на кожному етапі.
                     </p>
                     <p class="text-sm font-medium text-yellow-400 mt-3" data-i18n="proc2_time">Термін: до 15 днів</p>
@@ -459,7 +630,7 @@
                 <div class="w-full lg:w-1/3 bg-white/5 p-6 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/10 transition duration-300 glass-card-hover">
                     <div class="text-4xl text-green-400 mb-4 font-extrabold">3</div>
                     <h3 class="text-xl font-semibold mb-2 text-white" data-i18n="proc3_title">Митне Оформлення та Завантаження</h3>
-                    <p class="text-gray-300 text-sm" data-i18n="proc3_text">
+                    <p class="text-gray-300" data-i18n="proc3_text">
                         Ми беремо на себе митне оформлення. Швидке та професійне завантаження товару у Ваш транспорт.
                     </p>
                     <p class="text-sm font-medium text-yellow-400 mt-3" data-i18n="proc3_time">Термін: 1 день</p>
@@ -518,18 +689,21 @@
                 </div>
 
                 <!-- Image Gallery (Alt-тексти оптимізовані) -->
-                <div class="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4 rounded-3xl overflow-hidden shadow-2xl glass-card">
+                <div class="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4 rounded-3xl overflow-hidden shadow-2xl glass-card image-container">
                     
-                    <div class="col-span-2 lg:col-span-1 img-gallery-item-lg-main">
-                        <img id="img-loading" src="pallets.jpg" alt="Процес швидкого завантаження ISPM 15 сертифікованих дерев'яних піддонів у вантажівку" class="w-full h-full object-cover">
+                    <div class="col-span-2 lg:col-span-1 img-gallery-item-lg-main overflow-hidden rounded-xl">
+                        <!-- ОНОВЛЕННЯ 1.2: Додано клас image-hover-zoom -->
+                        <img id="img-loading" src="pallets.jpg" alt="Процес швидкого завантаження ISPM 15 сертифікованих дерев'яних піддонів у вантажівку" class="w-full h-full object-cover image-hover-zoom" loading="lazy">
                     </div>
                     
                     <div class="col-span-2 grid grid-cols-2 gap-4">
-                        <div class="img-gallery-item-lg">
-                            <img id="img-quality" src="control.jpg" alt="Контроль якості нестандартного дерев'яного піддону відповідно до креслень" class="w-full h-full object-cover">
+                        <div class="img-gallery-item-lg overflow-hidden rounded-xl">
+                            <!-- ОНОВЛЕННЯ 1.2: Додано клас image-hover-zoom -->
+                            <img id="img-quality" src="control.jpg" alt="Контроль якості нестандартного дерев'яного піддону відповідно до креслень" class="w-full h-full object-cover image-hover-zoom" loading="lazy">
                         </div>
-                        <div class="img-gallery-item-lg">
-                            <img id="img-raw" src="materials.jpg" alt="Складування та перевірка якості сировини для виробництва дерев'яних піддонів" class="w-full h-full object-cover">
+                        <div class="img-gallery-item-lg overflow-hidden rounded-xl">
+                            <!-- ОНОВЛЕННЯ 1.2: Додано клас image-hover-zoom -->
+                            <img id="img-raw" src="materials.jpg" alt="Складування та перевірка якості сировини для виробництва дерев'яних піддонів" class="w-full h-full object-cover image-hover-zoom" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -585,6 +759,94 @@
         </div>
     </section>
 
+    <!-- НОВА СЕКЦІЯ: FAQ (Часті питання) - ПЕРЕМІЩЕНО В КІНЕЦЬ -->
+    <section id="faq" class="py-16 md:py-20 bg-gray-800 fade-in-section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-12 text-center border-b-2 border-green-500 inline-block pb-1" data-i18n="sect_title_faq">
+                Часті Запитання (FAQ)
+            </h2>
+
+            <div id="faq-accordion" class="space-y-4">
+                
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-gray-900/50 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm">
+                    <div class="faq-question p-4" data-i18n="faq1_q">
+                        Чи відповідають ваші піддони стандартам ISPM 15 для експорту?
+                        <svg class="faq-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p data-i18n="faq1_a">Так, вся наша дерев'яна пакувальна продукція, призначена для експорту, проходить обов'язкову термообробку (HT) і має відповідне маркування ISPM 15 (IPPC).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-gray-900/50 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm">
+                    <div class="faq-question p-4" data-i18n="faq2_q">
+                        Який мінімальний обсяг замовлення дерев'яних піддонів на замовлення?
+                        <svg class="faq-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p data-i18n="faq2_a">Ми спеціалізуємося на B2B замовленнях великого та середнього обсягу. Мінімальний обсяг обговорюється індивідуально, залежно від складності креслення, але типово починається від однієї повної партії (наприклад, 1000+ одиниць).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-gray-900/50 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm">
+                    <div class="faq-question p-4" data-i18n="faq3_q">
+                        Який термін виготовлення нестандартного замовлення?
+                        <svg class="faq-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p data-i18n="faq3_a">Стандартний цикл виробництва, включаючи узгодження креслень та термообробку, становить до 15 робочих днів.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-gray-900/50 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm">
+                    <div class="faq-question p-4" data-i18n="faq4_q">
+                        Чи надаєте ви послуги митного оформлення для експорту?
+                        <svg class="faq-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p data-i18n="faq4_a">Так, ми самостійно беремо на себе повне митне оформлення нашої продукції, що значно спрощує логістику для наших європейських партнерів.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-gray-900/50 rounded-xl shadow-lg border border-white/10 backdrop-blur-sm">
+                    <div class="faq-question p-4" data-i18n="faq5_q">
+                        Які породи деревини ви використовуєте для виробництва палет?
+                        <svg class="faq-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p data-i18n="faq5_a">Ми використовуємо якісну українську деревину, переважно сосну та інші хвойні породи, що забезпечує міцність та відповідність експортним вимогам.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
@@ -623,10 +885,10 @@
                 'nav_services': 'Наші Послуги',
                 'nav_process': 'Процес', 
                 'nav_whyus': 'Чому Ми',
+                'nav_faq': 'FAQ', // НОВИЙ КЛЮЧ
                 'nav_contact': 'Контакти',
                 'hero_tagline': 'B2B Виробництво Дерев\'яних Піддонів', 
                 'hero_heading': 'Дерев\'яні Піддони для Бізнесу <br class="hidden sm:inline"> Якість, Перевірена Часом', 
-                'hero_text': 'Ми — надійний український виробник, що спеціалізується на виготовленні дерев\'яних піддонів та палет за індивідуальними кресленнями. Гарантуємо якість та експортну готовність натуральної деревини.', 
                 'hero_button': 'Надішліть Ваші Креслення Зараз',
                 'sect_title_spec': 'Наша Спеціалізація у Виробництві Піддонів', 
                 'serv1_title': 'Будь-який Розмір, Будь-який Дизайн',
@@ -658,6 +920,18 @@
                 'adv3_text': 'Готові забезпечувати довгострокові замовлення з надійною обсягом постачання.',
                 'sect_title_contact': 'Розпочніть Ваше Замовлення',
                 'contact_text': 'Бажаєте забезпечити постачання піддонів на замовлення? Надішліть нам запит на розрахунок!',
+                'sect_title_faq': 'Часті Запитання (FAQ)', // НОВИЙ КЛЮЧ
+                'faq1_q': 'Чи відповідають ваші піддони стандартам ISPM 15 для експорту?',
+                'faq1_a': 'Так, вся наша дерев\'яна пакувальна продукція, призначена для експорту, проходить обов\'язкову термообробку (HT) і має відповідне маркування ISPM 15 (IPPC).',
+                'faq2_q': 'Який мінімальний обсяг замовлення дерев\'яних піддонів на замовлення?',
+                'faq2_a': 'Ми спеціалізуємося на B2B замовленнях великого та середнього обсягу. Мінімальний обсяг обговорюється індивідуально, залежно від складності креслення, але типово починається від однієї повної партії (наприклад, 1000+ одиниць).',
+                'faq3_q': 'Який термін виготовлення нестандартного замовлення?',
+                'faq3_a': 'Стандартний цикл виробництва, включаючи узгодження креслень та термообробку, становить до 15 робочих днів.',
+                'faq4_q': 'Чи надаєте ви послуги митного оформлення для експорту?',
+                'faq4_a': 'Так, ми самостійно беремо на себе повне митне оформлення нашої продукції, що значно спрощує логістику для наших європейських партнерів.',
+                'faq5_q': 'Які породи деревини ви використовуєте для виробництва палет?',
+                'faq5_a': 'Ми використовуємо якісну українську деревину, переважно сосну та інші хвойні породи, що забезпечує міцність та відповідність експортним вимогам.',
+
                 'footer_text': 'ТОВ "Промбудспортіндустрія", Україна. Обслуговуємо європейських B2B клієнтів.',
                 'copyright': 'Всі Права Захищені.',
                 'select_language': 'Оберіть мову:',
@@ -683,6 +957,7 @@
                 'nav_services': 'Our Services',
                 'nav_process': 'Process', 
                 'nav_whyus': 'Why Us',
+                'nav_faq': 'FAQ',
                 'nav_contact': 'Contact',
                 'hero_tagline': 'B2B Wooden Pallet Manufacturing', 
                 'hero_heading': 'Wooden Pallets for Business <br class="hidden sm:inline"> Quality, Tested by Time', 
@@ -718,6 +993,17 @@
                 'adv3_text': 'Ready to secure long-term orders with a reliable supply volume.',
                 'sect_title_contact': 'Start Your Order',
                 'contact_text': 'Ready to secure your custom pallet supply? Send us a quote request!',
+                'sect_title_faq': 'Frequently Asked Questions (FAQ)',
+                'faq1_q': 'Do your pallets comply with ISPM 15 standards for export?',
+                'faq1_a': 'Yes, all our wooden packaging products intended for export undergo mandatory heat treatment (HT) and are certified with the relevant ISPM 15 (IPPC) marking.',
+                'faq2_q': 'What is the minimum order quantity for custom wooden pallets?',
+                'faq2_a': 'We specialize in large and medium-sized B2B orders. The minimum quantity is discussed individually, depending on the complexity of the drawing, but typically starts from one full batch (e.g., 1000+ units).',
+                'faq3_q': 'What is the lead time for a custom order?',
+                'faq3_a': 'The standard production cycle, including drawing approval and heat treatment, is up to 15 business days.',
+                'faq4_q': 'Do you provide customs clearance services for export?',
+                'faq4_a': 'Yes, we independently handle the full customs clearance of our products, which significantly simplifies logistics for our European partners.',
+                'faq5_q': 'What types of wood do you use for pallet production?',
+                'faq5_a': 'We use quality Ukrainian timber, primarily pine and other coniferous species, which ensures strength and compliance with export requirements.',
                 'footer_text': 'TOV "Prombudsportindustriya", Ukraine. Serving European B2B clients.',
                 'copyright': 'All Rights Reserved.',
                 'select_language': 'Select language:',
@@ -743,6 +1029,7 @@
                 'nav_services': 'Unsere Dienstleistungen',
                 'nav_process': 'Prozess', 
                 'nav_whyus': 'Warum Wir',
+                'nav_faq': 'FAQ',
                 'nav_contact': 'Kontakt',
                 'hero_tagline': 'B2B Holzpalettenherstellung', 
                 'hero_heading': 'Holzpaletten für Ihr Geschäft <br class="hidden sm:inline"> Qualität, Die Sich Bewährt Hat', 
@@ -778,6 +1065,17 @@
                 'adv3_text': 'Bereit, langfristige Aufträge mit einem zuverlässigen Liefervolumen zu sichern.',
                 'sect_title_contact': 'Starten Sie Ihre Bestellung',
                 'contact_text': 'Bereit, Ihre maßgeschneiderte Palettenlieferung zu sichern? Senden Sie uns eine Angebotsanfrage!',
+                'sect_title_faq': 'Häufig Gestellte Fragen (FAQ)',
+                'faq1_q': 'Entsprechen Ihre Paletten den ISPM 15 Exportstandards?',
+                'faq1_a': 'Ja, alle unsere für den Export bestimmten Holzverpackungsprodukte werden obligatorisch wärmebehandelt (HT) und sind mit der entsprechenden ISPM 15 (IPPC) Kennzeichnung zertifiziert.',
+                'faq2_q': 'Was ist die Mindestbestellmenge für kundenspezifische Holzpaletten?',
+                'faq2_a': 'Wir sind auf große und mittlere B2B-Bestellungen spezialisiert. Die Mindestmenge wird individuell besprochen, hängt von der Komplexität der Zeichnung ab, beginnt aber typischerweise bei einer vollen Charge (z. B. 1000+ Einheiten).',
+                'faq3_q': 'Wie lange ist die Lieferzeit für eine kundenspezifische Bestellung?',
+                'faq3_a': 'Der Standardproduktionszyklus, einschließlich Zeichnungsfreigabe und Wärmebehandlung, beträgt bis zu 15 Werktage.',
+                'faq4_q': 'Bieten Sie Zolldienstleistungen für den Export an?',
+                'faq4_a': 'Ja, wir übernehmen die vollständige Zollabfertigung unserer Produkte selbst, was die Logistik für unsere europäischen Partner erheblich vereinfacht.',
+                'faq5_q': 'Welche Holzarten verwenden Sie für die Palettenproduktion?',
+                'faq5_a': 'Wir verwenden hochwertiges ukrainisches Holz, hauptsächlich Kiefer und andere Nadelhölzer, um Festigkeit und Einhaltung der Exportanforderungen zu gewährleisten.',
                 'footer_text': 'GMBH "Prombudsportindustriya", Ukraine. Wir bedienen europäische B2B-Kunden.',
                 'copyright': 'Alle Rechte vorbehalten.',
                 'select_language': 'Sprache auswählen:',
@@ -803,6 +1101,7 @@
                 'nav_services': 'Nasze Usługi',
                 'nav_process': 'Proces', 
                 'nav_whyus': 'Dlaczego My',
+                'nav_faq': 'FAQ',
                 'nav_contact': 'Kontakt',
                 'hero_tagline': 'B2B Produkcja Palet Drewnianych', 
                 'hero_heading': 'Palety Drewniane dla Biznesu <br class="hidden sm:inline"> Jakość, Sprawdzona Czasem', 
@@ -814,17 +1113,17 @@
                 'serv2_title': 'Szybki Cykl Produkcyjny',
                 'serv2_text': 'Czas realizacji to tylko 15 dni od ostatecznego zatwierdzenia rysunków technicznych. Priorytetem jest szybkość bez uszczerbku dla jakości.',
                 'serv3_title': 'Zgodność z ISPM 15',
-                'serv3_text': 'Wszystkie produkty drewniane są poddawane obróbce cieplnej (HT) i posiadają certyfikat z oznaczeniem ISPM 15 dla sprawnego eksportu międzynarodowego.',
+                'serv3_text': 'Wszystkie produkty drewniane są poddawane obróbці cieplnej (HT) i posiadają certyfikat z oznaczeniem ISPM 15 для sprawного eksportu międzynarodowego.',
 
                 'sect_title_process': 'Nasz Proces: Od Rysunku do Gotowego Produktu', 
                 'proc1_title': 'Potwierдzenie Rysunku i Warunków',
                 'proc1_text': 'Przesyłają нам Państwo rysunki techniczne, a my omawiamy specyfikacje, rodzaj drewna, wolumen i cenę. Zajmuje to 1 день.',
                 'proc1_time': 'Termin: 1 день',
                 'proc2_title': 'Produkcja i Obróbka Cieplna (HT)',
-                'proc2_text': 'Uruchomienie produkcji zgodnie ze standardami ISPM 15 i FSC. Ścisła kontrola jakości na każdym etтапі.',
+                'proc2_text': 'Uruchomienie produkcji zgodnie ze standardami ISPM 15 и FSC. Ścisła kontrola jakości на każdym etтапі.',
                 'proc2_time': 'Termin: do 15 dni',
                 'proc3_title': 'Odprawa Celna i Załadunek',
-                'proc3_text': 'Samodzielnie zajmujemy się dokumentacją celną. Szybki i profesjonalny załadunek towaru do Państwa transportu.',
+                'proc3_text': 'Samodzielnie zajmujemy się dokumentacją celną. Szybki i profesjonalny załadunek towaru до Państwa transportu.',
                 'proc3_time': 'Termin: 1 день',
 
                 'sect_title_logist': 'Twoja Przewaga B2B: Бездосконała Logistyka', 
@@ -838,15 +1137,26 @@
                 'adv3_text': 'Gotowi zabezpieczać długoterminowe zamówления о niezawodnej wielkości dostaw.',
                 'sect_title_contact': 'Rozpocznij Swoje Zamówienie',
                 'contact_text': 'Gotowi zabezpieczyć dostawę palet na zamówленнє? Wyślij нам prośbę o wyцену!',
+                'sect_title_faq': 'Często Zadawane Pytania (FAQ)',
+                'faq1_q': 'Czy Państwa palety spełniają normy ISPM 15 dla eksportu?',
+                'faq1_a': 'Tak, wszystkie nasze drewniane produkty opakowaniowe przeznaczone do eksportu podlegają obowiązkowej obróbce cieplnej (HT) i posiadają odpowiednie oznaczenie ISPM 15 (IPPC).',
+                'faq2_q': 'Jaka jest minimalna ilość zamówienia na palety drewniane na zamówienie?',
+                'faq2_a': 'Specjalizujemy się w dużych i średnich zamówieniach B2B. Minimalna ilość jest omawiana indywidualnie, w zależności od złożoności rysunku, ale zazwyczaj zaczyna się od jednej pełnej partii (np. 1000+ jednostek).',
+                'faq3_q': 'Jaki jest czas realizacji niestandardowego zamówienia?',
+                'faq3_a': 'Standardowy cykl produkcyjny, włącznie z zatwierджением rysunków i obróbką cieplną, wynosi do 15 dni roboczych.',
+                'faq4_q': 'Czy świadczą Państwo usługi odprawy celnej dla eksportu?',
+                'faq4_a': 'Tak, samodzielnie zajmujemy się pełną odprawą celną naszych produktów, co znacznie upraszcza logistykę dla naszych europejskich partnerów.',
+                'faq5_q': 'Jakich gatunków drewna używają Państwo do produkcji palet?',
+                'faq5_a': 'Używamy wysokiej jakości drewna ukraińskiego, głównie sosny i innych gatunków iglastych, co zapewnia wytrzymałość i zgodność z wymogami eksportowymi.',
                 'footer_text': 'Sp. z o.o. "Prombudsportindustriya", Ukraina. Obsługujemy europejskich клієнтів B2B.',
                 'copyright': 'Wszelkie Prawa Zastrzeжені.',
                 'select_language': 'Wybierz jęзик:',
                 'form_button': 'Prześlij prośbę o wyцену',
                 'form_button_sending': 'Wysyłanie...',
                 'modal_success_title': 'Wysłano Pomyślnie!',
-                'modal_success_message': 'Otrzymaliśmy Państwa prośbę. Skontaktujemy się z Państwem w ciągu 24 godzin w celu omówienia szczegółów i przygotowania wyцены.',
+                'modal_success_message': 'Otrzymaliśmy Państwa prośbę. Skontaktujemy się z Państwem w ciągu 24 godzin w celu omówлення szczegółів i przygotowania wyцены.',
                 'modal_error_title': 'Błąd Wysłania',
-                'modal_error_message': 'Wystąpił błąd podczas wysyłania Państwa prośby. Proszę spróbować ponownie lub skontaktować się z nami mailowo/telefonicznie.',
+                'modal_error_message': 'Wystąpił błąd podczas wysyłania Państwa prośby. Proszę spróbować ponownie або skontaktować się z nami mailowo/telefonicznie.',
                 'modal_close': 'Zamknij',
                 // НОВІ КЛЮЧІ ДЛЯ ФОРМИ
                 'ph_name': "Twoje Imię (wymagane)",
@@ -869,7 +1179,14 @@
         const modalMessage = document.getElementById('modalMessage');
         const modalCloseButton = document.getElementById('modalCloseButton');
         const scrollToTopBtn = document.getElementById('scrollToTopBtn'); // Нова змінна
+        const sections = document.querySelectorAll('.fade-in-section'); // Секції для анімації
+        const progressBar = document.getElementById('progressBar'); // Нова смуга прогресу
         
+        // Timeout змінна для hover
+        let hoverTimeout;
+        // Змінна для значення padding навколо елементів (4px)
+        const NAV_CONTAINER_PADDING = 4; 
+
         // Helper function to update active state for all language buttons
         function updateLangButtonState(lang) {
             document.querySelectorAll('.lang-button').forEach(button => {
@@ -930,6 +1247,32 @@
             if (!contactForm.isSubmitting) {
                 submitButton.textContent = translations[lang]['form_button'];
             }
+            
+            // --- ОНОВЛЕННЯ ТЕКСТУ FAQ (НОВА ЛОГІКА) ---
+            document.querySelectorAll('#faq-accordion .faq-item').forEach((item, index) => {
+                const qKey = `faq${index + 1}_q`;
+                const aKey = `faq${index + 1}_a`;
+                
+                const questionElement = item.querySelector('.faq-question');
+                const answerElement = item.querySelector('.faq-answer p');
+
+                if (questionElement && translations[lang][qKey]) {
+                    // --- FIX: Safely extract the icon SVG HTML ---
+                    const iconElement = questionElement.querySelector('.faq-icon');
+                    let iconSvg = '';
+                    
+                    // Перевірка на null, щоб уникнути помилки outerHTML
+                    if (iconElement) {
+                        iconSvg = iconElement.outerHTML; 
+                    }
+
+                    // Insert the new translated text and re-insert the SVG (if found)
+                    questionElement.innerHTML = translations[lang][qKey] + iconSvg;
+                }
+                if (answerElement && translations[lang][aKey]) {
+                    answerElement.textContent = translations[lang][aKey];
+                }
+            });
 
 
             // Update active button state globally
@@ -1036,14 +1379,37 @@
             });
         }
         if (messageModal) {
-             messageModal.addEventListener('click', (e) => {
-                 if (e.target === messageModal) {
-                     messageModal.style.display = 'none';
-                 }
-             });
+             modalCloseButton.addEventListener('click', () => {
+                messageModal.style.display = 'none';
+            });
         }
+        
+        // --- ПРИБРАНО: Навігаційний слайдер (НОВА ФУНКЦІОНАЛЬНІСТЬ) ---
+        
+        // Функція для оновлення активного пункту меню (для простого підсвічування)
+        function updateActiveNav(sectionId) {
+            // Зняття активного стану з усіх посилань
+            document.querySelectorAll('[data-section]').forEach(link => {
+                link.classList.remove('active-nav');
+                // Скидаємо inline-стиль кольору, якщо він не активний
+                link.classList.remove('active-nav'); 
+            });
 
-        // --- Sticky Header Logic and Scroll-to-Top Logic (НОВИЙ ФУНКЦІОНАЛ) ---
+            const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active-nav');
+            }
+        }
+        
+        // Додаємо обробник подій на клік по посиланню на desktop для негайної анімації
+        document.querySelectorAll('#desktop-nav-links .nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const sectionId = e.currentTarget.getAttribute('data-section');
+                updateActiveNav(sectionId);
+            });
+        });
+        
+        // --- Scroll Logic (оновлено для ProgressBar та Nav Highlighting) ---
         function handleScroll() {
             const scrollPosition = window.scrollY;
 
@@ -1060,6 +1426,12 @@
             } else {
                 scrollToTopBtn.classList.remove('show');
             }
+            
+            // 3. Progress Bar Logic (НОВА)
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
         }
 
         function scrollToTop() {
@@ -1069,28 +1441,87 @@
             });
         }
 
-        // --- Section Fade-In Animation Logic (НОВИЙ ФУНКЦІОНАЛ) ---
-        const sections = document.querySelectorAll('.fade-in-section');
-
-        const observerOptions = {
+        // --- Section Visibility (Intersection Observer for Animation and Nav Highlighting) ---
+        
+        const animationObserverOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1 // Секція вважається видимою, коли 10% її видно
+            threshold: 0.1 
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const animationObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Після показу можна відключити спостерігач для цієї секції
                     observer.unobserve(entry.target); 
                 }
             });
-        }, observerOptions);
+        }, animationObserverOptions);
+
+        const navObserverOptions = {
+            root: null,
+            // Виділяємо секцію, коли вона знаходиться приблизно на третині екрана
+            rootMargin: '-30% 0px -30% 0px', 
+            threshold: 0.3 
+        };
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    if (sectionId !== 'hero-section') {
+                        updateActiveNav(sectionId);
+                    }
+                }
+            });
+        }, navObserverOptions);
+
+        // Обробник зміни розміру екрана
+        function handleResize() {
+            handleScroll(); 
+            // Функції, пов'язані зі слайдером, видалені.
+        }
+        window.addEventListener('resize', handleResize);
+
+        // --- FAQ Accordion Logic (ВИПРАВЛЕНО ДЛЯ ПЛАВНОЇ АНІМАЦІЇ) ---
+        function toggleFAQ(item) {
+            // FIX: Тепер отримуємо відповідь, яка є Grid-контейнером
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon');
+
+            // 1. Закриваємо всі інші (для акордеона)
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                // FIX: Використовуємо .faq-item.open для перевірки стану
+                if (otherItem !== item && otherItem.classList.contains('open')) {
+                    otherItem.classList.remove('open');
+                    const otherIcon = otherItem.querySelector('.faq-icon');
+                    if (otherIcon) otherIcon.classList.remove('rotate');
+                }
+            });
+
+            // 2. Перемикаємо поточний
+            if (item.classList.contains('open')) {
+                // Закрити
+                item.classList.remove('open');
+                if (icon) icon.classList.remove('rotate');
+            } else {
+                // Відкрити
+                item.classList.add('open');
+                if (icon) icon.classList.add('rotate');
+            }
+        }
 
 
-        // Initialize listeners and set initial state
         document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', () => {
+                        toggleFAQ(item);
+                    });
+                }
+            });
+            
             // Set up event listeners for mobile menu
             mobileMenuButton.addEventListener('click', toggleMobileMenu);
             mobileMenuClose.addEventListener('click', toggleMobileMenu);
@@ -1112,9 +1543,22 @@
             
             // Start observing sections for fade-in effect
             sections.forEach(section => {
-                observer.observe(section);
+                animationObserver.observe(section);
+                // Також спостерігаємо за секціями для підсвічування навігації
+                navObserver.observe(section); 
             });
+            
+            // Початкове виділення Hero (та ініціалізація слайдера)
+            updateActiveNav('hero-section');
         });
+        
+        // Fix: Виділення Hero, коли користувач знаходиться на самому верху
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 300) {
+                 updateActiveNav('hero-section');
+            }
+        });
+        
     </script>
 </body>
 </html>
